@@ -310,6 +310,7 @@ a { color: inherit; }
 .work-item:hover { border-color: var(--ink); transform: translateY(-2px); box-shadow: var(--shadow); }
 .work-thumb { width: 140px; flex-shrink: 0; border: 1px solid var(--line); }
 .work-thumb svg { display: block; width: 100%; }
+.work-thumb img { display: block; width: 100%; height: auto; }
 .work-meta strong { font-family: var(--serif); font-size: 1.05rem; display: block; }
 .work-meta em { font-style: normal; color: var(--ink-soft); font-size: 0.9rem; }
 .sheet-note { margin-top: 22px; color: var(--ink-soft); font-size: 0.95rem; }

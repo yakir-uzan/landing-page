@@ -1,0 +1,13 @@
+# Local Claude Code settings (per-machine)
+.claude/settings.local.json
+
+# OS files
+Thumbs.db
+.DS_Store
+
+# Editor
+.vscode/
+.idea/
+
+# Logs / temp
+*.log

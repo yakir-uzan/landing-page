@@ -1,0 +1,260 @@
+/* ═══════════════════════════════════════════
+   ערכת "הסטארטאפ" — רך, עגול, ידידותי
+   פסטל חם, קלפים מעוגלים, צל רך.
+   ═══════════════════════════════════════════ */
+
+html[data-theme="soft"] {
+  --sf-bg: #faf6f1;
+  --sf-card: #ffffff;
+  --sf-ink: #35322e;
+  --sf-dim: #8a837a;
+  --sf-coral: #f0684a;
+  --sf-mint: #bfe3d0;
+  --sf-butter: #f8dfae;
+  --sf-sky: #cfe0f2;
+  --sf-radius: 26px;
+  --sf-shadow: 0 14px 34px rgba(80, 60, 40, 0.1);
+}
+
+html[data-theme="soft"] body {
+  background: var(--sf-bg);
+  background-image:
+    radial-gradient(560px 380px at 88% -5%, rgba(191, 227, 208, 0.45), transparent 70%),
+    radial-gradient(520px 400px at 4% 30%, rgba(248, 223, 174, 0.4), transparent 70%),
+    radial-gradient(620px 460px at 70% 100%, rgba(207, 224, 242, 0.45), transparent 70%);
+  background-attachment: fixed;
+  color: var(--sf-ink);
+  font-family: 'Rubik', sans-serif;
+}
+
+html[data-theme="soft"] .decor,
+html[data-theme="soft"] .desk-hint,
+html[data-theme="soft"] .tape,
+html[data-theme="soft"] .pin,
+html[data-theme="soft"] .p-back,
+html[data-theme="soft"] .p-mid,
+html[data-theme="soft"] .fold-crease,
+html[data-theme="soft"] .sketch-draw,
+html[data-theme="soft"] .polaroid-img,
+html[data-theme="soft"] .bizcard-icon { display: none; }
+
+/* ═══ פריסה — קלפים במרכז ═══ */
+html[data-theme="soft"] .desk {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 18px;
+  max-width: 1020px;
+  margin-inline: auto;
+  padding: clamp(24px, 4vw, 56px);
+  padding-bottom: 120px;
+  align-content: start;
+}
+
+html[data-theme="soft"] .desk-head {
+  grid-column: 1 / -1;
+  max-width: none;
+  text-align: center;
+  margin: 0 0 26px;
+  padding-top: 8px;
+}
+html[data-theme="soft"] .studio-mark {
+  display: inline-block;
+  background: var(--sf-card);
+  border-radius: 99px;
+  padding: 8px 20px;
+  box-shadow: var(--sf-shadow);
+  color: var(--sf-dim);
+  font-size: 0.9rem;
+  margin-bottom: 26px;
+}
+html[data-theme="soft"] .desk-head h1 {
+  font-family: 'Rubik', sans-serif;
+  font-weight: 800;
+  font-size: clamp(2.5rem, 6vw, 4.2rem);
+  line-height: 1.15;
+  margin-bottom: 18px;
+}
+html[data-theme="soft"] .desk-head h1 em { color: var(--sf-coral); }
+html[data-theme="soft"] .desk-head h1 em::after {
+  background: var(--sf-butter);
+  height: 0.32em;
+  bottom: 0.04em;
+  border-radius: 99px;
+  z-index: -1;
+  transform: none;
+}
+html[data-theme="soft"] .desk-sub { color: var(--sf-dim); margin-inline: auto; }
+html[data-theme="soft"] .styles-hint {
+  color: var(--sf-coral);
+  border: none;
+  background: rgba(240, 104, 74, 0.1);
+  border-radius: 99px;
+  padding: 9px 18px;
+  font-weight: 600;
+}
+html[data-theme="soft"] .styles-hint:hover { opacity: 1; background: rgba(240, 104, 74, 0.18); }
+
+/* ═══ פריטים — קלפים רכים ═══ */
+html[data-theme="soft"] .desk-item {
+  position: static;
+  transform: none;
+  animation: none;
+  width: auto; height: auto;
+  margin: 0;
+  padding: 28px 24px;
+  background: var(--sf-card);
+  border: none;
+  border-radius: var(--sf-radius);
+  box-shadow: var(--sf-shadow);
+  display: flex; flex-direction: column; align-items: flex-start; gap: 6px;
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+html[data-theme="soft"] .desk-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 22px 44px rgba(80, 60, 40, 0.16);
+}
+/* עיגול צבע קטן לכל קלף */
+html[data-theme="soft"] .desk-item::before {
+  content: '';
+  width: 42px; height: 42px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+html[data-theme="soft"] .sketch::before { background: var(--sf-mint); }
+html[data-theme="soft"] .polaroid-stack::before { background: var(--sf-butter); }
+html[data-theme="soft"] .note-process::before { background: var(--sf-sky); }
+html[data-theme="soft"] .folded::before { background: var(--sf-coral); }
+html[data-theme="soft"] .note-small::before { background: var(--sf-mint); }
+html[data-theme="soft"] .bizcard::before { background: var(--sf-butter); }
+
+html[data-theme="soft"] .sketch { grid-column: span 2; }
+html[data-theme="soft"] .bizcard { grid-column: span 2; }
+
+html[data-theme="soft"] .item-label,
+html[data-theme="soft"] .note-title,
+html[data-theme="soft"] .polaroid-caption,
+html[data-theme="soft"] .bizcard-name {
+  font-family: 'Rubik', sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 1.25rem;
+  color: var(--sf-ink);
+  padding: 0; margin: 0;
+  text-align: start;
+}
+html[data-theme="soft"] .item-label.big small {
+  font-family: 'Rubik';
+  color: var(--sf-dim);
+  font-weight: 400;
+}
+html[data-theme="soft"] .note,
+html[data-theme="soft"] .note-small { background: var(--sf-card); width: auto; }
+html[data-theme="soft"] .note-lines { flex-direction: row; flex-wrap: wrap; gap: 8px; margin-top: 6px; }
+html[data-theme="soft"] .note-lines i {
+  border: none; padding: 4px 12px;
+  background: var(--sf-bg);
+  border-radius: 99px;
+  font-size: 0.82rem;
+  color: var(--sf-dim);
+}
+html[data-theme="soft"] .polaroid { position: static; padding: 0; background: none; border: none; box-shadow: none; height: auto; }
+html[data-theme="soft"] .polaroid-stack { width: auto; height: auto; }
+html[data-theme="soft"] .bizcard { background: var(--sf-ink); color: #fff; }
+html[data-theme="soft"] .bizcard .bizcard-name { color: #fff; }
+html[data-theme="soft"] .bizcard-line { background: var(--sf-coral); }
+html[data-theme="soft"] .bizcard-role { opacity: 0.8; }
+
+html[data-theme="soft"] .desk-foot {
+  position: static;
+  grid-column: 1 / -1;
+  margin-top: 26px;
+  color: var(--sf-dim);
+}
+
+/* ═══ תחנת הסגנונות ═══ */
+html[data-theme="soft"] .style-dock {
+  background: var(--sf-card);
+  border: none;
+  border-radius: 99px;
+  box-shadow: 0 16px 36px rgba(80, 60, 40, 0.18);
+  padding: 8px 10px;
+}
+html[data-theme="soft"] .dock-info { border: none; background: var(--sf-bg); border-radius: 50%; color: var(--sf-coral); }
+html[data-theme="soft"] .dock-options button { border-radius: 99px; color: var(--sf-dim); }
+html[data-theme="soft"] .dock-options button.active { background: var(--sf-coral); color: #fff; }
+
+/* ═══ מודלים ═══ */
+html[data-theme="soft"] .overlay-bg { background: rgba(53, 50, 46, 0.35); }
+html[data-theme="soft"] .sheet {
+  background: var(--sf-card);
+  border: none;
+  border-radius: 30px;
+  box-shadow: 0 30px 70px rgba(50, 40, 30, 0.25);
+}
+html[data-theme="soft"] .sheet h2 { font-family: 'Rubik'; font-weight: 800; }
+html[data-theme="soft"] .sheet-close { border: none; background: var(--sf-bg); }
+html[data-theme="soft"] .sheet-intro,
+html[data-theme="soft"] .service-list p,
+html[data-theme="soft"] .package-row p,
+html[data-theme="soft"] .steps li,
+html[data-theme="soft"] .faq p,
+html[data-theme="soft"] .work-meta em,
+html[data-theme="soft"] .sheet-note,
+html[data-theme="soft"] .styles-list span,
+html[data-theme="soft"] .styles-point { color: var(--sf-dim); }
+html[data-theme="soft"] .service-list h3,
+html[data-theme="soft"] .package-row h3,
+html[data-theme="soft"] .work-meta strong,
+html[data-theme="soft"] .faq summary,
+html[data-theme="soft"] .steps li strong,
+html[data-theme="soft"] .styles-list strong { font-family: 'Rubik'; font-weight: 700; }
+html[data-theme="soft"] .service-list svg { color: var(--sf-coral); }
+html[data-theme="soft"] .service-list li,
+html[data-theme="soft"] .package-row,
+html[data-theme="soft"] .steps li,
+html[data-theme="soft"] .faq details,
+html[data-theme="soft"] .styles-list li { border-top: 1px solid #efe8df; }
+html[data-theme="soft"] .steps li::before {
+  border: none;
+  background: var(--sf-mint);
+  border-radius: 50%;
+  font-family: 'Rubik';
+}
+html[data-theme="soft"] .steps li:nth-child(4)::before { background: var(--sf-coral); color: #fff; }
+html[data-theme="soft"] .package-row.highlight {
+  border-inline-start: none;
+  background: var(--sf-bg);
+  border-radius: 18px;
+  padding: 20px 18px;
+  border-top: none;
+}
+html[data-theme="soft"] .row-flag { color: var(--sf-coral); inset-inline-end: 18px; left: auto; }
+html[data-theme="soft"] .faq summary::after { color: var(--sf-coral); }
+html[data-theme="soft"] .work-item { border: 1px solid #efe8df; border-radius: 18px; overflow: hidden; }
+html[data-theme="soft"] .work-item:hover { border-color: var(--sf-coral); box-shadow: var(--sf-shadow); }
+html[data-theme="soft"] .work-thumb { border: none; border-radius: 12px; overflow: hidden; }
+html[data-theme="soft"] .ink-link { color: var(--sf-coral); }
+html[data-theme="soft"] .styles-point { border-inline-start-color: var(--sf-coral); }
+html[data-theme="soft"] .btn {
+  background: var(--sf-coral);
+  border-radius: 99px;
+  font-family: 'Rubik'; font-weight: 600;
+}
+html[data-theme="soft"] .btn:hover { box-shadow: 0 12px 26px rgba(240, 104, 74, 0.35); }
+html[data-theme="soft"] .btn-ink { background: var(--sf-ink); }
+html[data-theme="soft"] .field input {
+  border: 1.5px solid #efe8df;
+  border-radius: 14px;
+  background: var(--sf-bg);
+}
+html[data-theme="soft"] .field input:focus { border-color: var(--sf-coral); }
+html[data-theme="soft"] .form-note.ok { color: #3d9b6b; }
+html[data-theme="soft"] .form-note.err { color: var(--sf-coral); }
+
+/* ═══ מובייל ═══ */
+@media (max-width: 900px) {
+  html[data-theme="soft"] .desk { grid-template-columns: 1fr; }
+  html[data-theme="soft"] .desk-item,
+  html[data-theme="soft"] .sketch,
+  html[data-theme="soft"] .bizcard { grid-column: span 1; margin: 0; width: auto; }
+}

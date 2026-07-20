@@ -1,0 +1,334 @@
+/* ═══════════════════════════════════════════
+   ערכת "העורך" — האתר כעורך קוד
+   פחם כחלחל, ענבר, צבעי סינטקס, גשם אותיות.
+   ═══════════════════════════════════════════ */
+
+html[data-theme="tech"] {
+  --tc-bg: #0b0e14;
+  --tc-panel: rgba(16, 20, 28, 0.92);
+  --tc-chrome: #12161f;
+  --tc-text: #e6e1d7;
+  --tc-dim: #737d8c;
+  --tc-amber: #ffb454;
+  --tc-blue: #59c2ff;
+  --tc-green: #aad94c;
+  --tc-coral: #f07178;
+  --tc-purple: #d2a6ff;
+  --tc-line: rgba(255, 255, 255, 0.08);
+  --tc-mono: 'Consolas', 'Courier New', monospace;
+}
+
+html[data-theme="tech"] body {
+  background: var(--tc-bg);
+  background-image: none;
+  color: var(--tc-text);
+  font-family: 'Heebo', sans-serif;
+}
+
+/* גשם האותיות */
+html[data-theme="tech"] .tech-rain {
+  display: block;
+  position: fixed; inset: 0;
+  width: 100%; height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+html[data-theme="tech"] .decor,
+html[data-theme="tech"] .desk-hint,
+html[data-theme="tech"] .drag-tag,
+html[data-theme="tech"] .tape,
+html[data-theme="tech"] .pin,
+html[data-theme="tech"] .p-back,
+html[data-theme="tech"] .p-mid,
+html[data-theme="tech"] .fold-crease,
+html[data-theme="tech"] .polaroid-img,
+html[data-theme="tech"] .sketch-draw,
+html[data-theme="tech"] .bizcard-icon { display: none; }
+
+/* ═══ חלון העורך ═══ */
+html[data-theme="tech"] .desk {
+  display: flex; flex-direction: column;
+  position: relative; z-index: 1;
+  max-width: 900px;
+  margin: clamp(18px, 3vw, 44px) auto 110px;
+  padding: 0 0 34px;
+  min-height: 0;
+  background: var(--tc-panel);
+  border: 1px solid var(--tc-line);
+  border-radius: 12px;
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  overflow: hidden;
+}
+/* פס הכותרת של החלון + שם קובץ */
+html[data-theme="tech"] .desk::before {
+  content: 'yakir-studio  —  main.he  ●';
+  display: block;
+  order: -1;
+  padding: 12px 58px 12px 18px;
+  background: var(--tc-chrome);
+  border-bottom: 1px solid var(--tc-line);
+  font-family: var(--tc-mono);
+  font-size: 0.78rem;
+  color: var(--tc-dim);
+  direction: ltr;
+  text-align: center;
+}
+/* שלוש הנקודות של החלון */
+html[data-theme="tech"] .desk::after {
+  content: '';
+  position: absolute; top: 15px; inset-inline-start: 18px;
+  width: 11px; height: 11px; border-radius: 50%;
+  background: #f07178;
+  box-shadow: 18px 0 0 #ffb454, 36px 0 0 #aad94c;
+}
+
+html[data-theme="tech"] .desk-head {
+  max-width: none;
+  text-align: start;
+  margin: 0 0 8px;
+  padding: clamp(26px, 4vw, 44px) clamp(22px, 4vw, 44px) 26px;
+  border-bottom: 1px solid var(--tc-line);
+}
+
+/* הפקודה שמקלידה את עצמה */
+html[data-theme="tech"] .tech-cmd {
+  display: block;
+  font-family: var(--tc-mono);
+  font-size: 0.9rem;
+  color: var(--tc-green);
+  margin-bottom: 22px;
+  text-align: left;
+  min-height: 1.4em;
+}
+html[data-theme="tech"] .tech-caret {
+  display: inline-block;
+  width: 8px; height: 1.05em;
+  background: var(--tc-amber);
+  vertical-align: text-bottom;
+  margin-inline-start: 3px;
+  animation: tcBlink 0.9s steps(1) infinite;
+}
+@keyframes tcBlink { 50% { opacity: 0; } }
+
+html[data-theme="tech"] .studio-mark {
+  font-family: var(--tc-mono);
+  font-size: 0.8rem;
+  color: var(--tc-dim);
+  margin-bottom: 20px;
+}
+html[data-theme="tech"] .studio-mark .brand-name { color: var(--tc-blue); }
+html[data-theme="tech"] .desk-head h1 {
+  font-family: 'Heebo', sans-serif;
+  font-weight: 900;
+  font-size: clamp(2.2rem, 5vw, 3.6rem);
+  color: #f5f2ea;
+  margin-bottom: 18px;
+}
+html[data-theme="tech"] .desk-head h1 em {
+  color: var(--tc-amber);
+  text-shadow: 0 0 26px rgba(255, 180, 84, 0.45);
+}
+html[data-theme="tech"] .desk-head h1 em::after { display: none; }
+html[data-theme="tech"] .desk-sub { color: var(--tc-dim); }
+html[data-theme="tech"] .styles-hint {
+  color: var(--tc-amber);
+  border-bottom: 1px dashed rgba(255, 180, 84, 0.55);
+  font-weight: 400;
+  font-family: var(--tc-mono);
+  font-size: 0.85rem;
+}
+
+/* ═══ הפריטים — שורות קוד עם מספרים ושמות קבצים ═══ */
+html[data-theme="tech"] .desk { counter-reset: ln; }
+html[data-theme="tech"] .desk-item {
+  position: static;
+  transform: none;
+  animation: none;
+  width: 100%; height: auto;
+  margin: 0;
+  padding: 17px clamp(22px, 4vw, 44px);
+  background: transparent;
+  border: none;
+  border-inline-start: 2px solid transparent;
+  box-shadow: none;
+  display: flex; align-items: center; gap: 18px;
+  counter-increment: ln;
+  transition: background 0.15s, border-color 0.15s;
+}
+/* מספר שורה */
+html[data-theme="tech"] .desk-item::before {
+  content: counter(ln, decimal-leading-zero);
+  font-family: var(--tc-mono);
+  font-size: 0.8rem;
+  color: var(--tc-dim);
+  opacity: 0.55;
+  flex-shrink: 0;
+  min-width: 22px;
+  direction: ltr;
+}
+html[data-theme="tech"] .desk-item:hover {
+  transform: none;
+  background: rgba(255, 180, 84, 0.05);
+  border-inline-start-color: var(--tc-amber);
+}
+/* שם קובץ בסוף השורה */
+html[data-theme="tech"] .desk-item::after {
+  margin-inline-start: auto;
+  font-family: var(--tc-mono);
+  font-size: 0.76rem;
+  direction: ltr;
+  color: var(--tc-dim);
+  transition: color 0.15s;
+}
+html[data-theme="tech"] .sketch::after         { content: 'services.tsx'; }
+html[data-theme="tech"] .polaroid-stack::after { content: 'work.gallery'; }
+html[data-theme="tech"] .note-process::after   { content: 'process.md'; }
+html[data-theme="tech"] .folded::after         { content: 'pricing.json'; }
+html[data-theme="tech"] .note-small::after     { content: 'faq.md'; }
+html[data-theme="tech"] .bizcard::after        { content: 'contact.sh'; }
+html[data-theme="tech"] .sketch:hover::after         { color: var(--tc-blue); }
+html[data-theme="tech"] .polaroid-stack:hover::after { color: var(--tc-purple); }
+html[data-theme="tech"] .note-process:hover::after   { color: var(--tc-green); }
+html[data-theme="tech"] .folded:hover::after         { color: var(--tc-amber); }
+html[data-theme="tech"] .note-small:hover::after     { color: var(--tc-coral); }
+html[data-theme="tech"] .bizcard:hover::after        { color: var(--tc-green); }
+
+html[data-theme="tech"] .item-label,
+html[data-theme="tech"] .note-title,
+html[data-theme="tech"] .polaroid-caption,
+html[data-theme="tech"] .bizcard-name {
+  font-family: 'Heebo', sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 1.1rem;
+  color: #f5f2ea;
+  padding: 0; margin: 0;
+  text-align: start;
+}
+html[data-theme="tech"] .item-label.big { font-size: 1.1rem; }
+html[data-theme="tech"] .item-label.big small {
+  display: inline;
+  margin-inline-start: 12px;
+  font-family: 'Heebo'; font-size: 0.88rem; font-weight: 400;
+  color: var(--tc-dim);
+}
+html[data-theme="tech"] .note,
+html[data-theme="tech"] .note-small,
+html[data-theme="tech"] .paper { background: transparent; width: 100%; color: var(--tc-text); }
+html[data-theme="tech"] .note-lines { flex-direction: row; gap: 12px; margin-top: 2px; }
+html[data-theme="tech"] .note-lines i { border: none; color: var(--tc-dim); font-size: 0.84rem; padding: 0; }
+html[data-theme="tech"] .polaroid { position: static; padding: 0; background: none; border: none; box-shadow: none; height: auto; }
+html[data-theme="tech"] .polaroid-stack { width: 100%; height: auto; }
+html[data-theme="tech"] .bizcard {
+  background: transparent; width: 100%; padding: 17px clamp(22px, 4vw, 44px);
+  color: var(--tc-text);
+  display: flex; flex-direction: row; align-items: center; gap: 12px;
+}
+html[data-theme="tech"] .bizcard-line { width: 18px; height: 1px; background: var(--tc-amber); margin: 0; }
+html[data-theme="tech"] .bizcard-role { color: var(--tc-dim); opacity: 1; margin: 0; font-size: 0.9rem; }
+
+html[data-theme="tech"] .desk-foot {
+  position: static;
+  margin-top: 12px;
+  padding: 18px clamp(22px, 4vw, 44px) 0;
+  border-top: 1px solid var(--tc-line);
+  text-align: start;
+  font-family: var(--tc-mono);
+  font-size: 0.76rem;
+  color: var(--tc-dim);
+}
+html[data-theme="tech"] .desk-foot span::before { content: '// '; }
+
+/* ═══ תחנת הסגנונות — שורת סטטוס ═══ */
+html[data-theme="tech"] .style-dock {
+  background: var(--tc-chrome);
+  border: 1px solid var(--tc-line);
+  border-radius: 8px;
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.55);
+}
+html[data-theme="tech"] .dock-info { border-color: var(--tc-line); color: var(--tc-amber); background: none; border-radius: 6px; }
+html[data-theme="tech"] .dock-info:hover { background: rgba(255, 180, 84, 0.08); }
+html[data-theme="tech"] .dock-options button { color: var(--tc-dim); border-radius: 6px; }
+html[data-theme="tech"] .dock-options button:hover { color: var(--tc-text); }
+html[data-theme="tech"] .dock-options button.active { background: var(--tc-amber); color: #171207; }
+
+/* ═══ מודלים ═══ */
+html[data-theme="tech"] .overlay-bg { background: rgba(5, 7, 11, 0.7); }
+html[data-theme="tech"] .sheet {
+  background: #10141c;
+  border: 1px solid var(--tc-line);
+  border-radius: 12px;
+  box-shadow: 0 40px 90px rgba(0, 0, 0, 0.65);
+  color: var(--tc-text);
+}
+html[data-theme="tech"] .sheet h2 { font-family: 'Heebo'; font-weight: 900; color: #f5f2ea; }
+html[data-theme="tech"] .sheet h2::before { content: '# '; color: var(--tc-amber); font-family: var(--tc-mono); }
+html[data-theme="tech"] .sheet-close { background: transparent; border-color: var(--tc-line); color: var(--tc-text); }
+html[data-theme="tech"] .sheet-close:hover { background: rgba(255, 180, 84, 0.1); }
+html[data-theme="tech"] .sheet-intro,
+html[data-theme="tech"] .service-list p,
+html[data-theme="tech"] .package-row p,
+html[data-theme="tech"] .steps li,
+html[data-theme="tech"] .faq p,
+html[data-theme="tech"] .work-meta em,
+html[data-theme="tech"] .sheet-note,
+html[data-theme="tech"] .styles-list span,
+html[data-theme="tech"] .styles-point { color: var(--tc-dim); }
+html[data-theme="tech"] .service-list h3,
+html[data-theme="tech"] .package-row h3,
+html[data-theme="tech"] .work-meta strong,
+html[data-theme="tech"] .faq summary,
+html[data-theme="tech"] .steps li strong,
+html[data-theme="tech"] .styles-list strong { font-family: 'Heebo'; color: #f5f2ea; }
+html[data-theme="tech"] .service-list svg { color: var(--tc-blue); }
+html[data-theme="tech"] .service-list li:nth-child(2) svg { color: var(--tc-green); }
+html[data-theme="tech"] .service-list li:nth-child(3) svg { color: var(--tc-coral); }
+html[data-theme="tech"] .service-list li:nth-child(4) svg { color: var(--tc-purple); }
+html[data-theme="tech"] .service-list li,
+html[data-theme="tech"] .package-row,
+html[data-theme="tech"] .steps li,
+html[data-theme="tech"] .faq details,
+html[data-theme="tech"] .styles-list li { border-top: 1px solid var(--tc-line); }
+html[data-theme="tech"] .steps li::before {
+  border: none;
+  background: rgba(255, 180, 84, 0.12);
+  color: var(--tc-amber);
+  border-radius: 6px;
+  font-family: var(--tc-mono);
+}
+html[data-theme="tech"] .package-row.highlight { border-inline-start: 2px solid var(--tc-amber); }
+html[data-theme="tech"] .row-flag { color: var(--tc-amber); }
+html[data-theme="tech"] .faq summary::after { color: var(--tc-amber); }
+html[data-theme="tech"] .work-item { background: transparent; border: 1px solid var(--tc-line); border-radius: 10px; }
+html[data-theme="tech"] .work-item:hover { border-color: var(--tc-amber); box-shadow: 0 0 30px rgba(255, 180, 84, 0.1); }
+html[data-theme="tech"] .work-thumb { border-color: var(--tc-line); border-radius: 6px; overflow: hidden; filter: saturate(0.6) brightness(0.9); }
+html[data-theme="tech"] .ink-link { color: var(--tc-amber); }
+html[data-theme="tech"] .styles-point { border-inline-start-color: var(--tc-amber); }
+html[data-theme="tech"] .btn {
+  background: var(--tc-amber); color: #171207;
+  border-radius: 8px; font-weight: 700;
+}
+html[data-theme="tech"] .btn:hover { box-shadow: 0 0 34px rgba(255, 180, 84, 0.35); }
+html[data-theme="tech"] .btn-ink { background: transparent; color: var(--tc-amber); border: 1px solid var(--tc-amber); }
+html[data-theme="tech"] .or-line { color: var(--tc-dim); }
+html[data-theme="tech"] .or-line::before, html[data-theme="tech"] .or-line::after { border-color: var(--tc-line); }
+html[data-theme="tech"] .field input {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--tc-line);
+  border-radius: 8px;
+  color: var(--tc-text);
+}
+html[data-theme="tech"] .field input:focus { border-color: var(--tc-amber); }
+html[data-theme="tech"] .form-note.ok { color: var(--tc-green); }
+html[data-theme="tech"] .form-note.err { color: var(--tc-coral); }
+
+/* ═══ מובייל ═══ */
+@media (max-width: 900px) {
+  html[data-theme="tech"] .desk { margin-inline: 10px; }
+  html[data-theme="tech"] .desk-head { text-align: start; }
+  html[data-theme="tech"] .desk-item { margin: 0; }
+  html[data-theme="tech"] .desk-item::after { display: none; }
+  html[data-theme="tech"] .note-lines { flex-wrap: wrap; }
+}

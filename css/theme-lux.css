@@ -1,0 +1,341 @@
+/* ═══════════════════════════════════════════
+   ערכת "היוקרה" — זהב על שחור
+   סריף חגיגי, ברק זהב נודד, ספוטלייט עוקב.
+   ═══════════════════════════════════════════ */
+
+html[data-theme="lux"] {
+  --lx-bg: #0d0c0a;
+  --lx-panel: #14120e;
+  --lx-gold: #d4af37;
+  --lx-gold-soft: rgba(212, 175, 55, 0.4);
+  --lx-text: #efe9dc;
+  --lx-dim: #9c9483;
+  --lx-grad: linear-gradient(115deg, #8c6d1f, #e9d489 30%, #b8912f 55%, #f3e5b1 80%, #8c6d1f);
+}
+
+html[data-theme="lux"] body {
+  background: var(--lx-bg);
+  background-image: radial-gradient(ellipse at 50% 0%, rgba(212, 175, 55, 0.07), transparent 55%);
+  color: var(--lx-text);
+  font-family: 'Assistant', sans-serif;
+  font-weight: 300;
+  letter-spacing: 0.015em;
+}
+/* ספוטלייט שעוקב אחרי העכבר (מוזן מ-JS) */
+html[data-theme="lux"] body::after {
+  content: '';
+  position: fixed; inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: radial-gradient(480px circle at var(--luxx, 50%) var(--luxy, 30%),
+    rgba(212, 175, 55, 0.07), transparent 70%);
+}
+
+html[data-theme="lux"] .decor,
+html[data-theme="lux"] .desk-hint,
+html[data-theme="lux"] .drag-tag,
+html[data-theme="lux"] .tape,
+html[data-theme="lux"] .pin,
+html[data-theme="lux"] .p-back,
+html[data-theme="lux"] .p-mid,
+html[data-theme="lux"] .fold-crease,
+html[data-theme="lux"] .polaroid-img,
+html[data-theme="lux"] .sketch-draw,
+html[data-theme="lux"] .bizcard-icon { display: none; }
+
+/* ═══ עמוד תצוגה מוזיאלי ═══ */
+html[data-theme="lux"] .desk {
+  position: relative;
+  z-index: 2;
+  display: flex; flex-direction: column;
+  max-width: 760px;
+  margin-inline: auto;
+  padding: clamp(28px, 5vw, 64px);
+  padding-bottom: 150px;
+  min-height: 0;
+  gap: 0;
+}
+
+html[data-theme="lux"] .desk-head {
+  max-width: none;
+  text-align: center;
+  margin: 0 0 30px;
+}
+html[data-theme="lux"] .studio-mark {
+  font-size: 0.82rem;
+  font-weight: 400;
+  letter-spacing: 0.5em;
+  text-indent: 0.5em; /* איזון לריווח האותיות */
+  color: var(--lx-dim);
+  text-transform: uppercase;
+  margin-bottom: 30px;
+}
+html[data-theme="lux"] .studio-mark .brand-name {
+  background: var(--lx-grad);
+  background-size: 250% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-weight: 700;
+  animation: lxShimmer 5s linear infinite;
+}
+@keyframes lxShimmer { to { background-position: 250% center; } }
+html[data-theme="lux"] .desk-head h1 {
+  font-family: 'Frank Ruhl Libre', serif;
+  font-weight: 500;
+  font-size: clamp(2.6rem, 6vw, 4.4rem);
+  line-height: 1.2;
+  margin-bottom: 26px;
+}
+html[data-theme="lux"] .desk-head h1 em {
+  font-style: italic;
+  background: var(--lx-grad);
+  background-size: 250% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: lxShimmer 5s linear infinite;
+}
+html[data-theme="lux"] .desk-head h1 em::after { display: none; }
+html[data-theme="lux"] .desk-sub { color: var(--lx-dim); margin-inline: auto; }
+/* קו זהב מתחת לכותרת */
+html[data-theme="lux"] .desk-head::after {
+  content: '';
+  display: block;
+  width: 90px; height: 1px;
+  margin: 30px auto 0;
+  background: var(--lx-grad);
+  background-size: 250% auto;
+  animation: lxShimmer 5s linear infinite;
+}
+html[data-theme="lux"] .styles-hint {
+  color: var(--lx-gold);
+  border: 1px solid var(--lx-gold-soft);
+  border-radius: 0;
+  padding: 10px 26px;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  font-size: 0.88rem;
+  margin-top: 26px;
+}
+html[data-theme="lux"] .styles-hint:hover { opacity: 1; border-color: var(--lx-gold); background: rgba(212, 175, 55, 0.06); }
+
+/* ═══ הפריטים — לוחות חרוטים ═══ */
+html[data-theme="lux"] .desk { counter-reset: lx; }
+html[data-theme="lux"] .desk-item {
+  position: relative;
+  inset: auto;
+  transform: none;
+  animation: none;
+  width: 100%; height: auto;
+  margin: 0 0 22px;
+  padding: 34px 36px;
+  background: var(--lx-panel);
+  border: 1px solid rgba(212, 175, 55, 0.22);
+  border-radius: 0;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+  display: flex; flex-direction: column; align-items: flex-start; gap: 8px;
+  counter-increment: lx;
+  overflow: hidden;
+  transition: border-color 0.35s, transform 0.35s;
+}
+html[data-theme="lux"] .desk-item:hover {
+  transform: translateY(-3px);
+  border-color: var(--lx-gold-soft);
+}
+/* ברק שחולף על הלוח בריחוף */
+html[data-theme="lux"] .desk-item::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(105deg, transparent 42%, rgba(233, 212, 137, 0.1) 50%, transparent 58%);
+  transform: translateX(120%);
+  pointer-events: none;
+}
+html[data-theme="lux"] .desk-item:hover::after {
+  transition: transform 0.9s ease;
+  transform: translateX(-120%);
+}
+/* ספרה רומית מוזהבת */
+html[data-theme="lux"] .desk-item::before {
+  content: counter(lx, upper-roman);
+  font-family: 'Frank Ruhl Libre', serif;
+  font-size: 0.95rem;
+  letter-spacing: 0.28em;
+  background: var(--lx-grad);
+  background-size: 250% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: lxShimmer 5s linear infinite;
+  direction: ltr;
+}
+/* פינות זהב */
+html[data-theme="lux"] .item-label,
+html[data-theme="lux"] .note-title,
+html[data-theme="lux"] .polaroid-caption,
+html[data-theme="lux"] .bizcard-name {
+  font-family: 'Frank Ruhl Libre', serif;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 1.6rem;
+  color: var(--lx-text);
+  padding: 0; margin: 0;
+  text-align: start;
+}
+html[data-theme="lux"] .item-label.big small {
+  font-family: 'Assistant';
+  font-weight: 300;
+  font-size: 0.95rem;
+  color: var(--lx-dim);
+  letter-spacing: 0.04em;
+  margin-top: 8px;
+}
+html[data-theme="lux"] .note,
+html[data-theme="lux"] .note-small,
+html[data-theme="lux"] .paper { background: var(--lx-panel); width: 100%; color: var(--lx-text); }
+html[data-theme="lux"] .note-lines { flex-direction: row; flex-wrap: wrap; gap: 6px 0; margin-top: 8px; }
+html[data-theme="lux"] .note-lines i {
+  border: none;
+  padding: 0;
+  font-size: 0.9rem;
+  font-weight: 300;
+  color: var(--lx-dim);
+  letter-spacing: 0.04em;
+}
+html[data-theme="lux"] .note-lines i:not(:last-child)::after { content: '·'; margin-inline: 12px; color: var(--lx-gold); }
+html[data-theme="lux"] .polaroid { position: static; padding: 0; background: none; border: none; box-shadow: none; height: auto; }
+html[data-theme="lux"] .polaroid-stack { width: 100%; height: auto; }
+html[data-theme="lux"] .bizcard {
+  background: linear-gradient(160deg, #191610, var(--lx-panel) 60%);
+  color: var(--lx-text);
+  width: 100%;
+  align-items: center; text-align: center;
+  border-color: var(--lx-gold-soft);
+}
+html[data-theme="lux"] .bizcard-name {
+  background: var(--lx-grad);
+  background-size: 250% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: lxShimmer 5s linear infinite;
+  text-align: center;
+}
+html[data-theme="lux"] .bizcard-line { width: 70px; height: 1px; background: var(--lx-grad); margin-inline: auto; }
+html[data-theme="lux"] .bizcard-role { color: var(--lx-dim); opacity: 1; text-align: center; letter-spacing: 0.06em; }
+
+html[data-theme="lux"] .desk-foot {
+  position: static;
+  margin-top: 16px;
+  text-align: center;
+  font-size: 0.8rem;
+  letter-spacing: 0.14em;
+  color: var(--lx-dim);
+}
+
+/* ═══ התחנה ═══ */
+html[data-theme="lux"] .style-dock {
+  background: rgba(20, 18, 14, 0.94);
+  border: 1px solid var(--lx-gold-soft);
+  border-radius: 0;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(12px);
+}
+html[data-theme="lux"] .dock-info { border-color: var(--lx-gold-soft); color: var(--lx-gold); border-radius: 0; }
+html[data-theme="lux"] .dock-info:hover { background: rgba(212, 175, 55, 0.08); }
+html[data-theme="lux"] .dock-current {
+  border-color: var(--lx-gold-soft);
+  color: var(--lx-text);
+  letter-spacing: 0.08em;
+  font-weight: 400;
+}
+
+/* ═══ מודלים ═══ */
+html[data-theme="lux"] .overlay-bg { background: rgba(5, 4, 2, 0.75); }
+html[data-theme="lux"] .sheet {
+  background: var(--lx-panel);
+  border: 1px solid var(--lx-gold-soft);
+  border-radius: 0;
+  box-shadow: 0 40px 100px rgba(0, 0, 0, 0.7);
+  color: var(--lx-text);
+}
+html[data-theme="lux"] .sheet h2 {
+  font-family: 'Frank Ruhl Libre', serif;
+  font-weight: 500;
+  background: var(--lx-grad);
+  background-size: 250% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: lxShimmer 5s linear infinite;
+}
+html[data-theme="lux"] .sheet-close { background: transparent; border-color: var(--lx-gold-soft); border-radius: 0; color: var(--lx-gold); }
+html[data-theme="lux"] .sheet-close:hover { background: rgba(212, 175, 55, 0.1); }
+html[data-theme="lux"] .sheet-intro,
+html[data-theme="lux"] .service-list p,
+html[data-theme="lux"] .package-row p,
+html[data-theme="lux"] .steps li,
+html[data-theme="lux"] .faq p,
+html[data-theme="lux"] .work-meta em,
+html[data-theme="lux"] .sheet-note,
+html[data-theme="lux"] .styles-list span,
+html[data-theme="lux"] .styles-point { color: var(--lx-dim); font-weight: 300; }
+html[data-theme="lux"] .service-list h3,
+html[data-theme="lux"] .package-row h3,
+html[data-theme="lux"] .work-meta strong,
+html[data-theme="lux"] .faq summary,
+html[data-theme="lux"] .steps li strong,
+html[data-theme="lux"] .styles-list strong { font-family: 'Frank Ruhl Libre', serif; font-weight: 500; color: var(--lx-text); }
+html[data-theme="lux"] .service-list svg { color: var(--lx-gold); }
+html[data-theme="lux"] .service-list li,
+html[data-theme="lux"] .package-row,
+html[data-theme="lux"] .steps li,
+html[data-theme="lux"] .faq details,
+html[data-theme="lux"] .styles-list li { border-top: 1px solid rgba(212, 175, 55, 0.18); }
+html[data-theme="lux"] .steps li::before {
+  border: 1px solid var(--lx-gold-soft);
+  border-radius: 50%;
+  color: var(--lx-gold);
+  font-family: 'Frank Ruhl Libre', serif;
+}
+html[data-theme="lux"] .package-row.highlight { border-inline-start: 2px solid var(--lx-gold); }
+html[data-theme="lux"] .row-flag { color: var(--lx-gold); letter-spacing: 0.1em; }
+html[data-theme="lux"] .faq summary::after { color: var(--lx-gold); }
+html[data-theme="lux"] .work-item { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(212, 175, 55, 0.2); border-radius: 0; }
+html[data-theme="lux"] .work-item:hover { border-color: var(--lx-gold); box-shadow: 0 0 30px rgba(212, 175, 55, 0.12); }
+html[data-theme="lux"] .work-thumb { border-color: rgba(212, 175, 55, 0.25); filter: sepia(0.5) saturate(0.6) brightness(0.85); }
+html[data-theme="lux"] .ink-link { color: var(--lx-gold); }
+html[data-theme="lux"] .styles-point { border-inline-start-color: var(--lx-gold); }
+html[data-theme="lux"] .btn {
+  background: var(--lx-grad);
+  background-size: 250% auto;
+  color: #17130a;
+  border-radius: 0;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  animation: lxShimmer 5s linear infinite;
+}
+html[data-theme="lux"] .btn:hover { box-shadow: 0 8px 30px rgba(212, 175, 55, 0.35); }
+html[data-theme="lux"] .btn-ink {
+  background: transparent;
+  color: var(--lx-gold);
+  border: 1px solid var(--lx-gold-soft);
+  animation: none;
+}
+html[data-theme="lux"] .or-line { color: var(--lx-dim); letter-spacing: 0.1em; }
+html[data-theme="lux"] .or-line::before, html[data-theme="lux"] .or-line::after { border-color: rgba(212, 175, 55, 0.2); }
+html[data-theme="lux"] .field input {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  border-radius: 0;
+  color: var(--lx-text);
+}
+html[data-theme="lux"] .field input:focus { border-color: var(--lx-gold); }
+html[data-theme="lux"] .form-note.ok { color: #b5cf8f; }
+html[data-theme="lux"] .form-note.err { color: #d98a6a; }
+
+/* ═══ מובייל ═══ */
+@media (max-width: 900px) {
+  html[data-theme="lux"] .desk-item { margin: 0 0 18px; padding: 26px 22px; }
+  html[data-theme="lux"] body::after { display: none; }
+}

@@ -1,0 +1,319 @@
+/* ═══════════════════════════════════════════
+   ערכת "הבלופרינט" — שרטוט הנדסי
+   קווים לבנים על כחול, רשת, מידות והערות.
+   ═══════════════════════════════════════════ */
+
+html[data-theme="blueprint"] {
+  --bp-bg: #0d3159;
+  --bp-deep: #0a2748;
+  --bp-white: #eaf3ff;
+  --bp-dim: #9db9d8;
+  --bp-accent: #9fd0ff;
+  --bp-line: rgba(234, 243, 255, 0.35);
+  --bp-grid: rgba(234, 243, 255, 0.07);
+  --bp-mono: 'Consolas', 'Courier New', monospace;
+}
+
+html[data-theme="blueprint"] body {
+  background: var(--bp-bg);
+  background-image:
+    linear-gradient(var(--bp-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--bp-grid) 1px, transparent 1px),
+    linear-gradient(rgba(234, 243, 255, 0.11) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(234, 243, 255, 0.11) 1px, transparent 1px);
+  background-size: 25px 25px, 25px 25px, 125px 125px, 125px 125px;
+  color: var(--bp-white);
+  font-family: 'Assistant', sans-serif;
+}
+
+html[data-theme="blueprint"] .decor,
+html[data-theme="blueprint"] .desk-hint,
+html[data-theme="blueprint"] .drag-tag,
+html[data-theme="blueprint"] .tape,
+html[data-theme="blueprint"] .pin,
+html[data-theme="blueprint"] .p-back,
+html[data-theme="blueprint"] .p-mid,
+html[data-theme="blueprint"] .fold-crease,
+html[data-theme="blueprint"] .polaroid-img,
+html[data-theme="blueprint"] .bizcard-icon { display: none; }
+
+/* ═══ גיליון השרטוט ═══ */
+html[data-theme="blueprint"] .desk {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+  align-content: start;
+  max-width: 980px;
+  margin: clamp(18px, 3vw, 40px) auto 120px;
+  padding: clamp(22px, 4vw, 48px);
+  min-height: 0;
+  border: 2px solid var(--bp-line);
+  outline: 1px solid var(--bp-line);
+  outline-offset: 8px;
+}
+
+html[data-theme="blueprint"] .desk-head {
+  grid-column: 1 / -1;
+  max-width: none;
+  text-align: start;
+  margin: 0 0 14px;
+  padding-bottom: 24px;
+  border-bottom: 1px dashed var(--bp-line);
+}
+html[data-theme="blueprint"] .studio-mark {
+  font-family: var(--bp-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  color: var(--bp-dim);
+  margin-bottom: 22px;
+}
+html[data-theme="blueprint"] .studio-mark::before { content: 'PROJECT: '; direction: ltr; unicode-bidi: embed; }
+html[data-theme="blueprint"] .studio-mark .brand-name { color: var(--bp-accent); }
+html[data-theme="blueprint"] .desk-head h1 {
+  font-family: 'Assistant', sans-serif;
+  font-weight: 700;
+  font-size: clamp(2.3rem, 5.5vw, 3.9rem);
+  letter-spacing: 0.01em;
+  margin-bottom: 18px;
+}
+/* קו מידה מתחת למילה המודגשת */
+html[data-theme="blueprint"] .desk-head h1 em { position: relative; }
+html[data-theme="blueprint"] .desk-head h1 em::after {
+  display: block;
+  background: none;
+  border-bottom: 1.5px solid var(--bp-accent);
+  height: 0.3em;
+  inset-inline: 0;
+  bottom: -0.28em;
+  transform: none;
+  animation: none;
+  /* חיצי מידה בקצוות */
+  -webkit-mask: none;
+}
+html[data-theme="blueprint"] .desk-head h1 em::before {
+  content: '‹ 04 יח׳ ›';
+  position: absolute;
+  bottom: -1.55em;
+  right: 50%;
+  translate: 50%;
+  font-family: var(--bp-mono);
+  font-size: 0.72rem;
+  font-weight: 400;
+  color: var(--bp-accent);
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+}
+html[data-theme="blueprint"] .desk-sub { color: var(--bp-dim); margin-top: 24px; }
+html[data-theme="blueprint"] .styles-hint {
+  color: var(--bp-accent);
+  border: 1px dashed var(--bp-accent);
+  padding: 8px 16px;
+  font-family: var(--bp-mono);
+  font-size: 0.82rem;
+}
+
+/* ═══ הפריטים — רכיבי שרטוט ═══ */
+html[data-theme="blueprint"] .desk-item {
+  position: relative;
+  inset: auto;
+  transform: none;
+  animation: none;
+  width: auto; height: auto;
+  margin: 0;
+  padding: 26px 22px 34px;
+  background: rgba(10, 39, 72, 0.5);
+  border: 1.5px dashed var(--bp-line);
+  border-radius: 0;
+  box-shadow: none;
+  display: flex; flex-direction: column; align-items: flex-start; gap: 8px;
+  transition: background 0.2s, border-color 0.2s;
+}
+html[data-theme="blueprint"] .desk-item:hover {
+  transform: none;
+  background: rgba(234, 243, 255, 0.06);
+  border-style: solid;
+  border-color: var(--bp-accent);
+}
+/* סימוני פינות + מספר איור */
+html[data-theme="blueprint"] .desk-item::before {
+  content: '+';
+  position: absolute;
+  top: -9px; inset-inline-start: -7px;
+  font-family: var(--bp-mono);
+  color: var(--bp-accent);
+  font-size: 0.95rem;
+}
+html[data-theme="blueprint"] .desk-item::after {
+  position: absolute;
+  bottom: 8px; inset-inline-end: 12px;
+  font-family: var(--bp-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  color: var(--bp-dim);
+  direction: ltr;
+}
+html[data-theme="blueprint"] .sketch::after         { content: 'FIG. 01 — SERVICES'; }
+html[data-theme="blueprint"] .polaroid-stack::after { content: 'FIG. 02 — WORKS'; }
+html[data-theme="blueprint"] .note-process::after   { content: 'FIG. 03 — PROCESS'; }
+html[data-theme="blueprint"] .folded::after         { content: 'FIG. 04 — PRICING'; }
+html[data-theme="blueprint"] .note-small::after     { content: 'FIG. 05 — F.A.Q'; }
+html[data-theme="blueprint"] .bizcard::after        { content: 'FIG. 06 — CONTACT'; }
+
+/* השרטוט של הסקיצה — נשאר, בקווים לבנים */
+html[data-theme="blueprint"] .sketch-draw {
+  display: block;
+  color: var(--bp-accent);
+  opacity: 0.85;
+  margin-bottom: 6px;
+}
+html[data-theme="blueprint"] .sketch-draw rect,
+html[data-theme="blueprint"] .sketch-draw line,
+html[data-theme="blueprint"] .sketch-draw circle { stroke: currentColor; }
+
+html[data-theme="blueprint"] .item-label,
+html[data-theme="blueprint"] .note-title,
+html[data-theme="blueprint"] .polaroid-caption,
+html[data-theme="blueprint"] .bizcard-name {
+  font-family: 'Assistant', sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 1.25rem;
+  letter-spacing: 0.02em;
+  color: var(--bp-white);
+  padding: 0; margin: 0;
+  text-align: start;
+  border-bottom: 1px dashed var(--bp-line);
+  padding-bottom: 6px;
+}
+html[data-theme="blueprint"] .item-label.big small {
+  font-family: 'Assistant';
+  font-weight: 400;
+  color: var(--bp-dim);
+  margin-top: 6px;
+}
+html[data-theme="blueprint"] .note,
+html[data-theme="blueprint"] .note-small,
+html[data-theme="blueprint"] .paper { background: transparent; width: auto; box-shadow: none; color: var(--bp-white); }
+html[data-theme="blueprint"] .note-lines { flex-direction: column; gap: 4px; margin-top: 4px; }
+html[data-theme="blueprint"] .note-lines i {
+  border: none;
+  padding: 0;
+  font-size: 0.88rem;
+  font-family: var(--bp-mono);
+  color: var(--bp-dim);
+}
+html[data-theme="blueprint"] .note-lines i::before { content: '— '; color: var(--bp-accent); }
+html[data-theme="blueprint"] .polaroid { position: static; padding: 0; background: none; border: none; box-shadow: none; height: auto; }
+html[data-theme="blueprint"] .polaroid-stack { width: auto; height: auto; }
+html[data-theme="blueprint"] .bizcard { grid-column: 1 / -1; background: rgba(10, 39, 72, 0.5); color: var(--bp-white); width: auto; }
+html[data-theme="blueprint"] .bizcard-line { width: 60px; height: 1.5px; background: var(--bp-accent); }
+html[data-theme="blueprint"] .bizcard-role { color: var(--bp-dim); opacity: 1; }
+
+/* חותמת גיליון */
+html[data-theme="blueprint"] .desk-foot {
+  position: static;
+  grid-column: 1 / -1;
+  margin-top: 10px;
+  padding: 12px 16px;
+  border: 1.5px solid var(--bp-line);
+  font-family: var(--bp-mono);
+  font-size: 0.76rem;
+  letter-spacing: 0.08em;
+  color: var(--bp-dim);
+  text-align: start;
+  display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+}
+html[data-theme="blueprint"] .desk-foot span::after {
+  content: '  |  SCALE 1:1  |  REV. A';
+  direction: ltr; unicode-bidi: embed;
+  color: var(--bp-accent);
+}
+
+/* ═══ התחנה ═══ */
+html[data-theme="blueprint"] .style-dock {
+  background: var(--bp-deep);
+  border: 1.5px solid var(--bp-line);
+  border-radius: 0;
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.45);
+}
+html[data-theme="blueprint"] .dock-info { border-color: var(--bp-line); color: var(--bp-accent); border-radius: 0; }
+html[data-theme="blueprint"] .dock-info:hover { background: rgba(234, 243, 255, 0.07); }
+html[data-theme="blueprint"] .dock-current { border-color: var(--bp-line); color: var(--bp-white); font-family: var(--bp-mono); font-size: 0.85rem; }
+
+/* ═══ מודלים ═══ */
+html[data-theme="blueprint"] .overlay-bg { background: rgba(4, 16, 32, 0.7); }
+html[data-theme="blueprint"] .sheet {
+  background: var(--bp-bg);
+  background-image:
+    linear-gradient(var(--bp-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--bp-grid) 1px, transparent 1px);
+  background-size: 25px 25px;
+  border: 2px solid var(--bp-line);
+  border-radius: 0;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55);
+  color: var(--bp-white);
+}
+html[data-theme="blueprint"] .sheet h2 { font-family: 'Assistant'; font-weight: 700; }
+html[data-theme="blueprint"] .sheet h2::before { content: '§ '; color: var(--bp-accent); }
+html[data-theme="blueprint"] .sheet-close { background: transparent; border: 1.5px solid var(--bp-line); border-radius: 0; color: var(--bp-white); }
+html[data-theme="blueprint"] .sheet-close:hover { background: rgba(234, 243, 255, 0.08); }
+html[data-theme="blueprint"] .sheet-intro,
+html[data-theme="blueprint"] .service-list p,
+html[data-theme="blueprint"] .package-row p,
+html[data-theme="blueprint"] .steps li,
+html[data-theme="blueprint"] .faq p,
+html[data-theme="blueprint"] .work-meta em,
+html[data-theme="blueprint"] .sheet-note,
+html[data-theme="blueprint"] .styles-list span,
+html[data-theme="blueprint"] .styles-point { color: var(--bp-dim); }
+html[data-theme="blueprint"] .service-list h3,
+html[data-theme="blueprint"] .package-row h3,
+html[data-theme="blueprint"] .work-meta strong,
+html[data-theme="blueprint"] .faq summary,
+html[data-theme="blueprint"] .steps li strong,
+html[data-theme="blueprint"] .styles-list strong { font-family: 'Assistant'; color: var(--bp-white); }
+html[data-theme="blueprint"] .service-list svg { color: var(--bp-accent); }
+html[data-theme="blueprint"] .service-list li,
+html[data-theme="blueprint"] .package-row,
+html[data-theme="blueprint"] .steps li,
+html[data-theme="blueprint"] .faq details,
+html[data-theme="blueprint"] .styles-list li { border-top: 1px dashed var(--bp-line); }
+html[data-theme="blueprint"] .steps li::before {
+  border: 1.5px solid var(--bp-accent);
+  border-radius: 0;
+  color: var(--bp-accent);
+  font-family: var(--bp-mono);
+}
+html[data-theme="blueprint"] .package-row.highlight { border-inline-start: 3px solid var(--bp-accent); }
+html[data-theme="blueprint"] .row-flag { color: var(--bp-accent); }
+html[data-theme="blueprint"] .faq summary::after { color: var(--bp-accent); }
+html[data-theme="blueprint"] .work-item { background: rgba(10, 39, 72, 0.5); border: 1.5px dashed var(--bp-line); border-radius: 0; }
+html[data-theme="blueprint"] .work-item:hover { border-style: solid; border-color: var(--bp-accent); box-shadow: none; }
+html[data-theme="blueprint"] .work-thumb { border-color: var(--bp-line); filter: saturate(0) brightness(1.4) sepia(1) hue-rotate(175deg); }
+html[data-theme="blueprint"] .ink-link { color: var(--bp-accent); }
+html[data-theme="blueprint"] .styles-point { border-inline-start-color: var(--bp-accent); }
+html[data-theme="blueprint"] .btn {
+  background: var(--bp-accent); color: var(--bp-deep);
+  border-radius: 0;
+  font-weight: 700;
+}
+html[data-theme="blueprint"] .btn:hover { box-shadow: 0 0 0 4px rgba(159, 208, 255, 0.25); transform: none; }
+html[data-theme="blueprint"] .btn-ink { background: transparent; color: var(--bp-white); border: 1.5px dashed var(--bp-line); }
+html[data-theme="blueprint"] .or-line { color: var(--bp-dim); }
+html[data-theme="blueprint"] .or-line::before, html[data-theme="blueprint"] .or-line::after { border-color: var(--bp-line); }
+html[data-theme="blueprint"] .field input {
+  background: rgba(234, 243, 255, 0.05);
+  border: 1.5px dashed var(--bp-line);
+  border-radius: 0;
+  color: var(--bp-white);
+}
+html[data-theme="blueprint"] .field input:focus { border-style: solid; border-color: var(--bp-accent); }
+html[data-theme="blueprint"] .form-note.ok { color: #8ce8b0; }
+html[data-theme="blueprint"] .form-note.err { color: #ffb3a7; }
+
+/* ═══ מובייל ═══ */
+@media (max-width: 900px) {
+  html[data-theme="blueprint"] .desk { grid-template-columns: 1fr; outline-offset: 5px; margin-inline: 12px; }
+  html[data-theme="blueprint"] .desk-item,
+  html[data-theme="blueprint"] .bizcard { grid-column: span 1; margin: 0; width: auto; }
+}

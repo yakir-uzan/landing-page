@@ -1,0 +1,394 @@
+/* ═══════════════════════════════════════════
+   ערכת "העיתון" — עמוד שער אמיתי
+   כותרת־על, טורים עם קווי הפרדה, שורות "מאת",
+   אות פתיחה, תמונת שחור־לבן וטיקר חדשות.
+   ═══════════════════════════════════════════ */
+
+html[data-theme="paper"] {
+  --pp-bg: #f3ecda;
+  --pp-paper: #f7f1e2;
+  --pp-ink: #17150f;
+  --pp-soft: #4d4739;
+  --pp-line: rgba(23, 21, 15, 0.55);
+  --pp-hair: rgba(23, 21, 15, 0.22);
+  --pp-red: #a02015;
+  --pp-serif: 'Frank Ruhl Libre', serif;
+}
+
+html[data-theme="paper"] body {
+  background: var(--pp-bg);
+  /* מרקם נייר עיתון עדין */
+  background-image:
+    repeating-linear-gradient(0deg, rgba(23, 21, 15, 0.018) 0 1px, transparent 1px 3px),
+    radial-gradient(rgba(23, 21, 15, 0.04) 0.5px, transparent 0.5px);
+  background-size: auto, 4px 4px;
+  color: var(--pp-ink);
+  font-family: var(--pp-serif);
+  padding-top: 40px; /* מקום לטיקר */
+}
+
+/* ═══ טיקר החדשות ═══ */
+html[data-theme="paper"] .theme-strip {
+  display: block;
+  background: var(--pp-ink);
+  color: var(--pp-bg);
+  font-family: var(--pp-serif);
+  font-weight: 500;
+  font-size: 0.9rem;
+  letter-spacing: 0.02em;
+  padding: 9px 0;
+}
+html[data-theme="paper"] .strip-track { animation: stripRtl 34s linear infinite; }
+
+html[data-theme="paper"] .decor,
+html[data-theme="paper"] .desk-hint,
+html[data-theme="paper"] .drag-tag,
+html[data-theme="paper"] .tape,
+html[data-theme="paper"] .pin,
+html[data-theme="paper"] .p-back,
+html[data-theme="paper"] .p-mid,
+html[data-theme="paper"] .fold-crease,
+html[data-theme="paper"] .sketch-draw,
+html[data-theme="paper"] .bizcard-icon,
+html[data-theme="paper"] .studio-mark { display: none; }
+
+/* ═══ עמוד העיתון — טורים אמיתיים ═══ */
+html[data-theme="paper"] .desk {
+  display: block;
+  column-count: 3;
+  column-gap: 30px;
+  column-rule: 1px solid var(--pp-hair);
+  max-width: 1120px;
+  margin-inline: auto;
+  padding: clamp(18px, 3vw, 40px) clamp(18px, 3.5vw, 46px) 120px;
+  min-height: 0;
+  border-inline: 1px solid var(--pp-line);
+}
+
+/* ═══ כותרת־העל (Masthead) ═══ */
+html[data-theme="paper"] .desk-head {
+  column-span: all;
+  max-width: none;
+  text-align: center;
+  margin: 0 0 22px;
+}
+html[data-theme="paper"] .np-masthead {
+  display: block;
+  font-family: var(--pp-serif);
+  font-weight: 900;
+  font-size: clamp(2.8rem, 9vw, 6.6rem);
+  line-height: 1;
+  letter-spacing: -0.01em;
+  padding: 6px 0 10px;
+  border-top: 3px solid var(--pp-ink);
+  border-bottom: 3px solid var(--pp-ink);
+  /* קו כפול דק מתחת לעבה */
+  box-shadow: inset 0 -6px 0 var(--pp-bg), inset 0 -7px 0 var(--pp-ink);
+}
+/* שורת התאריך */
+html[data-theme="paper"] .np-dateline {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 6px 18px;
+  padding: 7px 2px;
+  margin-bottom: 22px;
+  border-bottom: 1.5px solid var(--pp-ink);
+  font-family: 'Assistant', sans-serif;
+  font-size: 0.76rem;
+  letter-spacing: 0.04em;
+  color: var(--pp-soft);
+  text-transform: none;
+}
+html[data-theme="paper"] .np-dateline span:nth-child(2) { color: var(--pp-red); font-weight: 700; }
+
+/* כותרת הכתבה הראשית */
+html[data-theme="paper"] .desk-head h1 {
+  font-family: var(--pp-serif);
+  font-weight: 900;
+  font-size: clamp(2.6rem, 7vw, 5rem);
+  line-height: 1.04;
+  letter-spacing: -0.01em;
+  margin-bottom: 14px;
+}
+html[data-theme="paper"] .desk-head h1 em { font-style: italic; }
+html[data-theme="paper"] .desk-head h1 em::after { display: none; }
+/* כותרת המשנה (deck) */
+html[data-theme="paper"] .desk-sub {
+  font-family: var(--pp-serif);
+  font-style: italic;
+  font-size: 1.15rem;
+  color: var(--pp-soft);
+  max-width: 60ch;
+  margin: 0 auto 14px;
+  padding-bottom: 18px;
+  border-bottom: 3px double var(--pp-ink);
+}
+html[data-theme="paper"] .styles-hint {
+  color: var(--pp-red);
+  border-bottom: 1.5px solid var(--pp-red);
+  font-family: var(--pp-serif);
+  font-weight: 700;
+}
+
+/* ═══ הכתבות — פריטים בטורים ═══ */
+html[data-theme="paper"] .desk-item {
+  position: relative;
+  inset: auto;
+  transform: none;
+  animation: none;
+  width: auto; height: auto;
+  margin: 0 0 22px;
+  padding: 0 0 22px;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--pp-hair);
+  border-radius: 0;
+  box-shadow: none;
+  display: block;
+  break-inside: avoid;
+  text-align: start;
+  transition: none;
+}
+html[data-theme="paper"] .desk-item:hover { transform: none; background: transparent; }
+
+/* תווית מדור אדומה מעל הכותרת */
+html[data-theme="paper"] .desk-item::before {
+  display: block;
+  font-family: 'Assistant', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  color: var(--pp-red);
+  border-bottom: 1px solid var(--pp-hair);
+  padding-bottom: 6px;
+  margin-bottom: 8px;
+}
+html[data-theme="paper"] .sketch::before         { content: 'השער'; }
+html[data-theme="paper"] .polaroid-stack::before { content: 'תרבות ועבודות'; }
+html[data-theme="paper"] .note-process::before   { content: 'מדריך'; }
+html[data-theme="paper"] .folded::before         { content: 'כלכלה'; }
+html[data-theme="paper"] .note-small::before     { content: 'שאל את המומחה'; }
+html[data-theme="paper"] .bizcard::before        { content: 'מכתבים למערכת'; }
+
+/* כותרות כתבה */
+html[data-theme="paper"] .item-label,
+html[data-theme="paper"] .note-title,
+html[data-theme="paper"] .polaroid-caption,
+html[data-theme="paper"] .bizcard-name {
+  display: block;
+  font-family: var(--pp-serif);
+  font-weight: 900;
+  font-style: normal;
+  font-size: 1.7rem;
+  line-height: 1.12;
+  color: var(--pp-ink);
+  padding: 0; margin: 0 0 4px;
+  text-align: start;
+}
+/* הכתבה הראשית — כותרת גדולה יותר */
+html[data-theme="paper"] .sketch .item-label { font-size: 2rem; }
+html[data-theme="paper"] .item-label.big small {
+  display: block;
+  font-family: var(--pp-serif);
+  font-weight: 400;
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--pp-soft);
+  margin-top: 2px;
+}
+
+/* שורת "מאת" */
+html[data-theme="paper"] .np-byline {
+  display: block;
+  font-family: 'Assistant', sans-serif;
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--pp-soft);
+  padding: 5px 0;
+  margin-bottom: 8px;
+  border-bottom: 1px solid var(--pp-hair);
+}
+
+/* גוף הכתבה — טקסט מיושר לשני הצדדים */
+html[data-theme="paper"] .np-body {
+  display: block;
+  font-family: var(--pp-serif);
+  font-size: 0.98rem;
+  line-height: 1.62;
+  color: var(--pp-ink);
+  text-align: justify;
+  hyphens: auto;
+  margin-top: 8px;
+}
+/* אות פתיחה גדולה בכתבה הראשית */
+html[data-theme="paper"] .sketch .np-body::first-letter {
+  float: right;
+  font-family: var(--pp-serif);
+  font-weight: 900;
+  font-size: 3.6em;
+  line-height: 0.76;
+  padding: 6px 0 0 10px;
+  color: var(--pp-red);
+}
+
+/* הפתקים — עכשיו כתבות רגילות */
+html[data-theme="paper"] .note,
+html[data-theme="paper"] .note-small,
+html[data-theme="paper"] .paper {
+  background: transparent;
+  width: auto;
+  box-shadow: none;
+  padding: 0 0 22px;
+}
+/* "מה כולל" של החבילות — כרשימת תבליטים עיתונאית */
+html[data-theme="paper"] .note-lines { display: block; margin: 8px 0 0; }
+html[data-theme="paper"] .note-lines i {
+  display: inline;
+  border: none;
+  padding: 0;
+  font-size: 0.98rem;
+  color: var(--pp-ink);
+  font-family: var(--pp-serif);
+}
+html[data-theme="paper"] .note-lines i:not(:last-child)::after { content: ' · '; color: var(--pp-red); }
+
+/* ═══ תמונת שחור־לבן (הפולארויד) ═══ */
+html[data-theme="paper"] .polaroid { position: static; padding: 0; background: none; border: none; box-shadow: none; height: auto; }
+html[data-theme="paper"] .polaroid-stack { width: auto; height: auto; }
+html[data-theme="paper"] .p-front { display: block; }
+html[data-theme="paper"] .polaroid-img {
+  display: block;
+  margin-bottom: 4px;
+  border: 1px solid var(--pp-ink);
+  padding: 4px;
+  background: var(--pp-paper);
+}
+html[data-theme="paper"] .polaroid-img svg {
+  display: block; width: 100%;
+  /* אפקט הדפסת עיתון: גווני אפור + רשת הדפס */
+  filter: grayscale(1) contrast(1.15) brightness(1.05);
+}
+html[data-theme="paper"] .polaroid-caption {
+  display: block;
+  font-family: var(--pp-serif);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 1rem;
+  text-align: start;
+  padding: 4px 0 0;
+}
+html[data-theme="paper"] .np-photo-credit {
+  display: block;
+  font-family: 'Assistant', sans-serif;
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+  color: var(--pp-soft);
+  margin-bottom: 6px;
+}
+
+/* כרטיס הביקור — פינת "מכתבים למערכת" */
+html[data-theme="paper"] .bizcard { background: transparent; color: var(--pp-ink); width: auto; align-items: flex-start; text-align: start; }
+html[data-theme="paper"] .bizcard-line { width: 46px; height: 2px; background: var(--pp-red); margin: 2px 0 6px; }
+html[data-theme="paper"] .bizcard-role { color: var(--pp-soft); opacity: 1; font-family: var(--pp-serif); font-style: italic; margin-bottom: 2px; }
+
+/* חותמת תחתית העמוד */
+html[data-theme="paper"] .desk-foot {
+  column-span: all;
+  position: static;
+  margin-top: 10px;
+  padding-top: 12px;
+  border-top: 3px double var(--pp-ink);
+  text-align: center;
+  font-family: var(--pp-serif);
+  font-style: italic;
+  color: var(--pp-soft);
+}
+
+/* ═══ התחנה ═══ */
+html[data-theme="paper"] .style-dock {
+  background: var(--pp-paper);
+  border: 2px solid var(--pp-ink);
+  border-radius: 0;
+  box-shadow: 4px 4px 0 var(--pp-ink);
+}
+html[data-theme="paper"] .dock-info { border-color: var(--pp-ink); color: var(--pp-red); border-radius: 0; }
+html[data-theme="paper"] .dock-info:hover { background: rgba(23, 21, 15, 0.06); }
+html[data-theme="paper"] .dock-current { border-color: var(--pp-ink); color: var(--pp-ink); font-family: var(--pp-serif); font-weight: 700; }
+
+/* ═══ מודלים ═══ */
+html[data-theme="paper"] .overlay-bg { background: rgba(23, 21, 15, 0.5); backdrop-filter: none; }
+html[data-theme="paper"] .sheet {
+  background: var(--pp-paper);
+  border: 2px solid var(--pp-ink);
+  border-radius: 0;
+  box-shadow: 8px 8px 0 var(--pp-ink);
+  color: var(--pp-ink);
+}
+html[data-theme="paper"] .sheet h2 { font-family: var(--pp-serif); font-weight: 900; }
+html[data-theme="paper"] .sheet-close { background: var(--pp-paper); border: 2px solid var(--pp-ink); border-radius: 0; color: var(--pp-ink); }
+html[data-theme="paper"] .sheet-intro,
+html[data-theme="paper"] .service-list p,
+html[data-theme="paper"] .package-row p,
+html[data-theme="paper"] .steps li,
+html[data-theme="paper"] .faq p,
+html[data-theme="paper"] .work-meta em,
+html[data-theme="paper"] .sheet-note,
+html[data-theme="paper"] .styles-list span,
+html[data-theme="paper"] .styles-point { color: var(--pp-soft); }
+html[data-theme="paper"] .sheet-intro { font-family: var(--pp-serif); font-style: italic; }
+html[data-theme="paper"] .service-list h3,
+html[data-theme="paper"] .package-row h3,
+html[data-theme="paper"] .work-meta strong,
+html[data-theme="paper"] .faq summary,
+html[data-theme="paper"] .steps li strong,
+html[data-theme="paper"] .styles-list strong { font-family: var(--pp-serif); font-weight: 900; }
+html[data-theme="paper"] .service-list svg { color: var(--pp-red); }
+html[data-theme="paper"] .service-list li,
+html[data-theme="paper"] .package-row,
+html[data-theme="paper"] .steps li,
+html[data-theme="paper"] .faq details,
+html[data-theme="paper"] .styles-list li { border-top: 1px solid var(--pp-hair); }
+html[data-theme="paper"] .steps li::before {
+  border: 2px solid var(--pp-ink);
+  border-radius: 50%;
+  color: var(--pp-ink);
+  font-family: var(--pp-serif);
+}
+html[data-theme="paper"] .steps li:nth-child(4)::before { border-color: var(--pp-red); color: var(--pp-red); }
+html[data-theme="paper"] .package-row.highlight { border-inline-start: 4px solid var(--pp-red); }
+html[data-theme="paper"] .row-flag { color: var(--pp-red); }
+html[data-theme="paper"] .faq summary::after { color: var(--pp-red); }
+html[data-theme="paper"] .work-item { background: transparent; border: 1px solid var(--pp-ink); border-radius: 0; }
+html[data-theme="paper"] .work-item:hover { box-shadow: 4px 4px 0 var(--pp-ink); border-color: var(--pp-ink); }
+html[data-theme="paper"] .work-thumb { border-color: var(--pp-ink); filter: grayscale(1) contrast(1.15); }
+html[data-theme="paper"] .ink-link { color: var(--pp-red); }
+html[data-theme="paper"] .styles-point { border-inline-start-color: var(--pp-red); }
+html[data-theme="paper"] .btn {
+  background: var(--pp-ink); color: var(--pp-bg);
+  border-radius: 0;
+  font-family: var(--pp-serif); font-weight: 700;
+}
+html[data-theme="paper"] .btn:hover { box-shadow: 4px 4px 0 var(--pp-red); transform: none; }
+html[data-theme="paper"] .btn-ink { background: transparent; color: var(--pp-ink); border: 2px solid var(--pp-ink); }
+html[data-theme="paper"] .or-line { color: var(--pp-soft); }
+html[data-theme="paper"] .or-line::before, html[data-theme="paper"] .or-line::after { border-color: var(--pp-hair); }
+html[data-theme="paper"] .field input {
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid var(--pp-ink);
+  border-radius: 0;
+  color: var(--pp-ink);
+}
+html[data-theme="paper"] .field input:focus { border-color: var(--pp-red); }
+html[data-theme="paper"] .form-note.ok { color: #2e6b3f; }
+html[data-theme="paper"] .form-note.err { color: var(--pp-red); }
+
+/* ═══ מובייל ═══ */
+@media (max-width: 1000px) {
+  html[data-theme="paper"] .desk { column-count: 2; }
+}
+@media (max-width: 640px) {
+  html[data-theme="paper"] .desk { column-count: 1; border-inline: none; }
+  html[data-theme="paper"] .np-masthead { font-size: clamp(2.4rem, 12vw, 3.4rem); }
+}

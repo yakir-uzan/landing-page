@@ -1,0 +1,444 @@
+/* ═══════════════════════════════════════════
+   ערכת "הגלקסיה" — חלל, זכוכית ואור
+   זוהר צפוני חי, כרטיסים מרחפים בתלת־ממד,
+   מסגרות ניאון מסתובבות, כוכבים ושובל עכבר.
+   ═══════════════════════════════════════════ */
+
+/* זווית מונפשת למסגרות הניאון המסתובבות */
+@property --gxa {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+html[data-theme="galaxy"] {
+  --gx-bg: #05060f;
+  --gx-text: #eef2ff;
+  --gx-dim: #9aa4c8;
+  --gx-teal: #2dd4bf;
+  --gx-violet: #8b5cf6;
+  --gx-magenta: #e879f9;
+  --gx-blue: #38bdf8;
+  --gx-card: rgba(15, 18, 34, 0.72);
+  --gx-line: rgba(255, 255, 255, 0.12);
+  --gx-grad: linear-gradient(100deg, var(--gx-teal), var(--gx-blue) 35%, var(--gx-violet) 70%, var(--gx-magenta));
+}
+
+html[data-theme="galaxy"] body {
+  background: var(--gx-bg);
+  background-image: none;
+  color: var(--gx-text);
+  font-family: 'Heebo', sans-serif;
+  overflow-x: hidden;
+}
+
+/* זוהר צפוני נושם מאחורי הכל */
+html[data-theme="galaxy"] body::before {
+  content: '';
+  position: fixed;
+  inset: -25%;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(38% 30% at 22% 25%, rgba(45, 212, 191, 0.2), transparent 70%),
+    radial-gradient(34% 32% at 78% 18%, rgba(139, 92, 246, 0.22), transparent 70%),
+    radial-gradient(40% 34% at 60% 82%, rgba(232, 121, 249, 0.14), transparent 70%),
+    radial-gradient(30% 26% at 12% 78%, rgba(56, 189, 248, 0.16), transparent 70%);
+  filter: blur(50px);
+  animation: gxAurora 16s ease-in-out infinite alternate;
+}
+@keyframes gxAurora {
+  from { transform: rotate(-4deg) scale(1); }
+  to { transform: rotate(5deg) scale(1.18); }
+}
+
+/* שכבות הקנבס */
+html[data-theme="galaxy"] .gx-stars {
+  display: block;
+  position: fixed; inset: 0;
+  width: 100%; height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+html[data-theme="galaxy"] .gx-trail {
+  display: block;
+  position: fixed; inset: 0;
+  width: 100%; height: 100%;
+  z-index: 96;
+  pointer-events: none;
+}
+
+html[data-theme="galaxy"] .decor,
+html[data-theme="galaxy"] .desk-hint,
+html[data-theme="galaxy"] .drag-tag,
+html[data-theme="galaxy"] .tape,
+html[data-theme="galaxy"] .pin,
+html[data-theme="galaxy"] .p-back,
+html[data-theme="galaxy"] .p-mid,
+html[data-theme="galaxy"] .fold-crease,
+html[data-theme="galaxy"] .polaroid-img,
+html[data-theme="galaxy"] .sketch-draw,
+html[data-theme="galaxy"] .bizcard-icon { display: none; }
+
+/* ═══ שדה הכרטיסים ═══ */
+html[data-theme="galaxy"] .desk {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  align-content: start;
+  max-width: 1060px;
+  margin-inline: auto;
+  padding: clamp(24px, 4vw, 56px);
+  padding-bottom: 140px;
+  perspective: 1100px;
+  /* פרלקסה — מוזנת מהעכבר ב-JS */
+  transform: translate3d(var(--gxx, 0px), var(--gxy, 0px), 0);
+  transition: transform 0.25s ease-out;
+}
+
+html[data-theme="galaxy"] .desk-head {
+  grid-column: 1 / -1;
+  max-width: none;
+  text-align: center;
+  margin: 0 0 34px;
+  padding-top: 12px;
+}
+html[data-theme="galaxy"] .studio-mark {
+  display: inline-block;
+  padding: 8px 22px;
+  border-radius: 99px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--gx-line);
+  backdrop-filter: blur(10px);
+  color: var(--gx-dim);
+  font-size: 0.88rem;
+  letter-spacing: 0.04em;
+  margin-bottom: 30px;
+}
+html[data-theme="galaxy"] .studio-mark .brand-name {
+  background: var(--gx-grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-weight: 700;
+}
+html[data-theme="galaxy"] .desk-head h1 {
+  font-family: 'Heebo', sans-serif;
+  font-weight: 900;
+  font-size: clamp(2.6rem, 6.5vw, 4.8rem);
+  line-height: 1.12;
+  margin-bottom: 22px;
+  background: linear-gradient(100deg, #ffffff, #c7d6ff 45%, #ffffff);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gxShine 6s linear infinite;
+}
+@keyframes gxShine { to { background-position: 200% center; } }
+html[data-theme="galaxy"] .desk-head h1 em {
+  background: var(--gx-grad);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 0 22px rgba(139, 92, 246, 0.55));
+  animation: gxShine 4s linear infinite;
+}
+html[data-theme="galaxy"] .desk-head h1 em::after { display: none; }
+html[data-theme="galaxy"] .desk-sub { color: var(--gx-dim); margin-inline: auto; }
+html[data-theme="galaxy"] .styles-hint {
+  color: var(--gx-text);
+  border: 1px solid var(--gx-line);
+  border-radius: 99px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  padding: 9px 20px;
+  font-weight: 400;
+}
+html[data-theme="galaxy"] .styles-hint:hover { opacity: 1; border-color: var(--gx-violet); box-shadow: 0 0 24px rgba(139, 92, 246, 0.35); }
+html[data-theme="galaxy"] .styles-hint svg { color: var(--gx-magenta); }
+
+/* ═══ כרטיסי זכוכית מרחפים ═══ */
+html[data-theme="galaxy"] .desk-item {
+  position: relative;
+  inset: auto;
+  width: auto; height: auto;
+  margin: 0;
+  padding: 30px 26px;
+  border-radius: 20px;
+  border: 1px solid transparent;
+  /* מסגרת ניאון מסתובבת: רקע הכרטיס + קונוס צבע על גבול שקוף */
+  background:
+    linear-gradient(var(--gx-card), var(--gx-card)) padding-box,
+    conic-gradient(from var(--gxa),
+      var(--gx-teal), var(--gx-blue), var(--gx-violet),
+      var(--gx-magenta), var(--gx-teal)) border-box;
+  backdrop-filter: blur(16px);
+  box-shadow: 0 24px 60px rgba(2, 4, 12, 0.6);
+  display: flex; flex-direction: column; align-items: flex-start; gap: 8px;
+  transform-style: preserve-3d;
+  will-change: transform;
+  /* כניסה + ריחוף — על מאפיינים נפרדים כדי לא להתנגש עם הטילט */
+  animation:
+    gxIn 0.7s calc(var(--gi, 0) * 0.1s) cubic-bezier(0.22, 1, 0.36, 1) backwards,
+    gxFloat 6.5s calc(var(--gi, 0) * -1.3s) ease-in-out infinite alternate;
+  transition: box-shadow 0.3s;
+}
+@keyframes gxIn {
+  from { opacity: 0; scale: 0.7; filter: blur(10px); }
+  to { opacity: 1; scale: 1; filter: blur(0); }
+}
+@keyframes gxFloat {
+  from { translate: 0 0; }
+  to { translate: 0 -12px; }
+}
+html[data-theme="galaxy"] .desk-item:nth-of-type(1) { --gi: 0; }
+html[data-theme="galaxy"] .desk-item:nth-of-type(2) { --gi: 1; }
+html[data-theme="galaxy"] .desk-item:nth-of-type(3) { --gi: 2; }
+html[data-theme="galaxy"] .desk-item:nth-of-type(4) { --gi: 3; }
+html[data-theme="galaxy"] .desk-item:nth-of-type(5) { --gi: 4; }
+html[data-theme="galaxy"] .desk-item:nth-of-type(6) { --gi: 5; }
+html[data-theme="galaxy"] .desk-item:hover {
+  box-shadow: 0 30px 80px rgba(2, 4, 12, 0.7), 0 0 46px rgba(139, 92, 246, 0.3);
+}
+/* הילה פנימית שעוקבת אחרי העכבר (מוזנת מ-JS) */
+html[data-theme="galaxy"] .desk-item::before {
+  content: '';
+  position: absolute; inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(200px circle at var(--gmx, 50%) var(--gmy, 50%),
+    rgba(139, 92, 246, 0.16), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+html[data-theme="galaxy"] .desk-item:hover::before { opacity: 1; }
+
+/* בליטה קלה של הפריסה */
+html[data-theme="galaxy"] .polaroid-stack,
+html[data-theme="galaxy"] .note-small { margin-top: 22px; }
+html[data-theme="galaxy"] .bizcard { grid-column: 1 / -1; align-items: center; text-align: center; padding: 40px 26px; }
+
+html[data-theme="galaxy"] .item-label,
+html[data-theme="galaxy"] .note-title,
+html[data-theme="galaxy"] .polaroid-caption,
+html[data-theme="galaxy"] .bizcard-name {
+  font-family: 'Heebo', sans-serif;
+  font-weight: 800;
+  font-style: normal;
+  font-size: 1.25rem;
+  color: var(--gx-text);
+  padding: 0; margin: 0;
+  text-align: start;
+}
+html[data-theme="galaxy"] .item-label.big small {
+  font-family: 'Heebo';
+  font-weight: 400;
+  color: var(--gx-dim);
+  margin-top: 4px;
+}
+html[data-theme="galaxy"] .note,
+html[data-theme="galaxy"] .note-small,
+html[data-theme="galaxy"] .paper { width: auto; }
+html[data-theme="galaxy"] .note-lines { flex-direction: row; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+html[data-theme="galaxy"] .note-lines i {
+  border: 1px solid var(--gx-line);
+  border-radius: 99px;
+  padding: 4px 12px;
+  font-size: 0.8rem;
+  color: var(--gx-dim);
+  background: rgba(255, 255, 255, 0.04);
+}
+html[data-theme="galaxy"] .polaroid { position: static; padding: 0; background: none; border: none; box-shadow: none; height: auto; }
+html[data-theme="galaxy"] .polaroid-stack { width: auto; height: auto; }
+html[data-theme="galaxy"] .bizcard-name {
+  font-size: 1.5rem;
+  background: var(--gx-grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-align: center;
+}
+html[data-theme="galaxy"] .bizcard-line {
+  width: 60px; height: 2px;
+  background: var(--gx-grad);
+  margin-inline: auto;
+  border-radius: 2px;
+}
+html[data-theme="galaxy"] .bizcard-role { color: var(--gx-dim); opacity: 1; text-align: center; }
+
+html[data-theme="galaxy"] .desk-foot {
+  position: static;
+  grid-column: 1 / -1;
+  margin-top: 20px;
+  text-align: center;
+  color: var(--gx-dim);
+}
+
+/* ═══ תחנת הסגנונות ═══ */
+html[data-theme="galaxy"] .style-dock {
+  background: rgba(15, 18, 34, 0.8);
+  border: 1px solid var(--gx-line);
+  border-radius: 99px;
+  backdrop-filter: blur(16px);
+  box-shadow: 0 16px 50px rgba(0, 0, 0, 0.55), 0 0 30px rgba(139, 92, 246, 0.12);
+  padding: 8px 10px;
+}
+html[data-theme="galaxy"] .dock-info {
+  border: 1px solid var(--gx-line);
+  border-radius: 50%;
+  background: none;
+  color: var(--gx-magenta);
+}
+html[data-theme="galaxy"] .dock-info:hover { background: rgba(232, 121, 249, 0.1); }
+html[data-theme="galaxy"] .dock-options button { color: var(--gx-dim); border-radius: 99px; }
+html[data-theme="galaxy"] .dock-options button:hover { color: var(--gx-text); }
+html[data-theme="galaxy"] .dock-options button.active {
+  background: var(--gx-grad);
+  color: #0a0c18;
+  font-weight: 700;
+}
+
+/* ═══ מודלים — זכוכית עמוקה ═══ */
+html[data-theme="galaxy"] .overlay-bg { background: rgba(3, 4, 10, 0.65); backdrop-filter: blur(6px); }
+html[data-theme="galaxy"] .sheet {
+  border: 1px solid transparent;
+  border-radius: 22px;
+  background:
+    linear-gradient(rgba(13, 16, 30, 0.92), rgba(13, 16, 30, 0.92)) padding-box,
+    conic-gradient(from var(--gxa), var(--gx-teal), var(--gx-blue), var(--gx-violet), var(--gx-magenta), var(--gx-teal)) border-box;
+  backdrop-filter: blur(24px);
+  box-shadow: 0 40px 110px rgba(0, 0, 0, 0.7), 0 0 60px rgba(139, 92, 246, 0.15);
+  color: var(--gx-text);
+}
+html[data-theme="galaxy"] .sheet h2 {
+  font-family: 'Heebo'; font-weight: 900;
+  background: var(--gx-grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+html[data-theme="galaxy"] .sheet-close {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--gx-line);
+  color: var(--gx-text);
+}
+html[data-theme="galaxy"] .sheet-close:hover { background: rgba(139, 92, 246, 0.2); }
+html[data-theme="galaxy"] .sheet-intro,
+html[data-theme="galaxy"] .service-list p,
+html[data-theme="galaxy"] .package-row p,
+html[data-theme="galaxy"] .steps li,
+html[data-theme="galaxy"] .faq p,
+html[data-theme="galaxy"] .work-meta em,
+html[data-theme="galaxy"] .sheet-note,
+html[data-theme="galaxy"] .styles-list span,
+html[data-theme="galaxy"] .styles-point { color: var(--gx-dim); }
+html[data-theme="galaxy"] .service-list h3,
+html[data-theme="galaxy"] .package-row h3,
+html[data-theme="galaxy"] .work-meta strong,
+html[data-theme="galaxy"] .faq summary,
+html[data-theme="galaxy"] .steps li strong,
+html[data-theme="galaxy"] .styles-list strong { font-family: 'Heebo'; color: var(--gx-text); }
+html[data-theme="galaxy"] .service-list svg { color: var(--gx-teal); }
+html[data-theme="galaxy"] .service-list li:nth-child(2) svg { color: var(--gx-blue); }
+html[data-theme="galaxy"] .service-list li:nth-child(3) svg { color: var(--gx-violet); }
+html[data-theme="galaxy"] .service-list li:nth-child(4) svg { color: var(--gx-magenta); }
+html[data-theme="galaxy"] .service-list li,
+html[data-theme="galaxy"] .package-row,
+html[data-theme="galaxy"] .steps li,
+html[data-theme="galaxy"] .faq details,
+html[data-theme="galaxy"] .styles-list li { border-top: 1px solid var(--gx-line); }
+html[data-theme="galaxy"] .steps li::before {
+  border: 1px solid var(--gx-line);
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--gx-teal);
+  font-family: 'Heebo';
+}
+html[data-theme="galaxy"] .steps li:nth-child(4)::before { border-color: var(--gx-magenta); color: var(--gx-magenta); }
+html[data-theme="galaxy"] .package-row.highlight { border-inline-start: 3px solid var(--gx-violet); }
+html[data-theme="galaxy"] .row-flag { color: var(--gx-magenta); }
+html[data-theme="galaxy"] .faq summary::after { color: var(--gx-teal); }
+html[data-theme="galaxy"] .work-item {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--gx-line);
+  border-radius: 16px;
+}
+html[data-theme="galaxy"] .work-item:hover {
+  border-color: var(--gx-violet);
+  box-shadow: 0 0 34px rgba(139, 92, 246, 0.25);
+}
+html[data-theme="galaxy"] .work-thumb { border: none; border-radius: 10px; overflow: hidden; filter: saturate(0.7) hue-rotate(190deg) brightness(0.9); }
+html[data-theme="galaxy"] .ink-link { color: var(--gx-teal); }
+html[data-theme="galaxy"] .styles-point { border-inline-start-color: var(--gx-magenta); }
+html[data-theme="galaxy"] .btn {
+  background: var(--gx-grad);
+  background-size: 160% auto;
+  color: #0a0c18;
+  font-weight: 700;
+  border-radius: 99px;
+  transition: background-position 0.35s, box-shadow 0.3s, transform 0.2s;
+}
+html[data-theme="galaxy"] .btn:hover {
+  background-position: 90% center;
+  box-shadow: 0 0 38px rgba(45, 212, 191, 0.35);
+}
+html[data-theme="galaxy"] .btn-ink {
+  background: rgba(255, 255, 255, 0.07);
+  color: var(--gx-text);
+  border: 1px solid var(--gx-line);
+}
+html[data-theme="galaxy"] .or-line { color: var(--gx-dim); }
+html[data-theme="galaxy"] .or-line::before, html[data-theme="galaxy"] .or-line::after { border-color: var(--gx-line); }
+html[data-theme="galaxy"] .field input {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--gx-line);
+  border-radius: 12px;
+  color: var(--gx-text);
+}
+html[data-theme="galaxy"] .field input:focus { border-color: var(--gx-violet); box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.2); }
+html[data-theme="galaxy"] .form-note.ok { color: var(--gx-teal); }
+html[data-theme="galaxy"] .form-note.err { color: var(--gx-magenta); }
+
+/* סיבוב המסגרות */
+html[data-theme="galaxy"] .desk-item,
+html[data-theme="galaxy"] .sheet { animation-fill-mode: backwards; }
+@supports (background: conic-gradient(from 0deg, red, blue)) {
+  html[data-theme="galaxy"] .desk-item { --gxa: 0deg; }
+  html[data-theme="galaxy"] .desk-item,
+  html[data-theme="galaxy"] .sheet {
+    animation-name: gxIn, gxFloat, gxSpin;
+    animation-duration: 0.7s, 6.5s, 7s;
+    animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1), ease-in-out, linear;
+    animation-delay: calc(var(--gi, 0) * 0.1s), calc(var(--gi, 0) * -1.3s), 0s;
+    animation-iteration-count: 1, infinite, infinite;
+    animation-direction: normal, alternate, normal;
+  }
+  html[data-theme="galaxy"] .sheet {
+    animation-name: liftUp, gxSpin;
+    animation-duration: 0.45s, 7s;
+    animation-timing-function: cubic-bezier(0.34, 1.3, 0.64, 1), linear;
+    animation-delay: 0s, 0s;
+    animation-iteration-count: 1, infinite;
+    animation-direction: normal, normal;
+  }
+}
+@keyframes gxSpin { to { --gxa: 360deg; } }
+
+/* ═══ מובייל ═══ */
+@media (max-width: 900px) {
+  html[data-theme="galaxy"] .desk { grid-template-columns: 1fr; transform: none; }
+  html[data-theme="galaxy"] .desk-item,
+  html[data-theme="galaxy"] .bizcard { grid-column: span 1; margin: 0; width: auto; }
+  html[data-theme="galaxy"] .polaroid-stack,
+  html[data-theme="galaxy"] .note-small { margin-top: 0; }
+}
+
+/* ═══ Reduced motion ═══ */
+@media (prefers-reduced-motion: reduce) {
+  html[data-theme="galaxy"] body::before { animation: none; }
+  html[data-theme="galaxy"] .desk-item { animation: none; }
+  html[data-theme="galaxy"] .desk { transform: none; }
+}

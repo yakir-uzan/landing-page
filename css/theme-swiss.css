@@ -1,0 +1,236 @@
+/* ═══════════════════════════════════════════
+   ערכת "המגזין" — עיצוב שוויצרי
+   לבן, שחור, אדום. גריד קשיח, טיפוגרפיה ענקית.
+   ═══════════════════════════════════════════ */
+
+html[data-theme="swiss"] {
+  --sw-red: #e0281c;
+  --sw-ink: #111111;
+  --sw-line: #111111;
+}
+
+html[data-theme="swiss"] body {
+  background: #ffffff;
+  background-image: none;
+  color: var(--sw-ink);
+  font-family: 'Heebo', sans-serif;
+}
+
+/* מסתירים את האביזרים של השולחן */
+html[data-theme="swiss"] .decor,
+html[data-theme="swiss"] .desk-hint,
+html[data-theme="swiss"] .tape,
+html[data-theme="swiss"] .pin,
+html[data-theme="swiss"] .p-back,
+html[data-theme="swiss"] .p-mid,
+html[data-theme="swiss"] .fold-crease,
+html[data-theme="swiss"] .polaroid-img,
+html[data-theme="swiss"] .sketch-draw,
+html[data-theme="swiss"] .bizcard-icon { display: none; }
+
+/* ═══ גריד מגזיני ═══ */
+html[data-theme="swiss"] .desk {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 0;
+  max-width: 1180px;
+  padding: 0;
+  margin: clamp(16px, 3vw, 40px) auto;
+  border: 3px solid var(--sw-line);
+  min-height: 0;
+  margin-bottom: 100px;
+}
+
+html[data-theme="swiss"] .desk-head {
+  grid-column: 1 / -1;
+  max-width: none;
+  padding: clamp(28px, 5vw, 64px);
+  border-bottom: 3px solid var(--sw-line);
+  text-align: start;
+  margin: 0;
+}
+html[data-theme="swiss"] .studio-mark {
+  font-size: 0.85rem; font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--sw-red);
+  margin-bottom: 20px;
+}
+html[data-theme="swiss"] .studio-mark .brand-name { color: var(--sw-ink); }
+html[data-theme="swiss"] .desk-head h1 {
+  font-family: 'Heebo', sans-serif;
+  font-weight: 900;
+  font-size: clamp(3rem, 8vw, 6.4rem);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  margin-bottom: 24px;
+}
+html[data-theme="swiss"] .desk-head h1 em { color: var(--sw-red); }
+html[data-theme="swiss"] .desk-head h1 em::after { display: none; }
+html[data-theme="swiss"] .desk-sub {
+  color: var(--sw-ink);
+  font-weight: 400;
+  max-width: 52ch;
+  margin: 0;
+}
+html[data-theme="swiss"] .styles-hint {
+  color: var(--sw-red);
+  border-bottom-color: var(--sw-red);
+  font-weight: 700;
+}
+
+/* ═══ הפריטים — תאים בגריד ═══ */
+html[data-theme="swiss"] .desk-item {
+  position: static;
+  transform: none;
+  animation: none;
+  width: auto; height: auto;
+  margin: 0;
+  padding: clamp(22px, 3vw, 36px);
+  background: #fff;
+  border: 0 solid var(--sw-line);
+  border-inline-start-width: 3px;
+  border-bottom-width: 3px;
+  box-shadow: none;
+  display: flex; flex-direction: column; align-items: flex-start; gap: 8px;
+  min-height: 170px;
+  counter-increment: cell;
+  transition: background 0.2s, color 0.2s;
+}
+html[data-theme="swiss"] .desk-item:hover {
+  transform: none;
+  background: var(--sw-ink);
+  color: #fff;
+}
+html[data-theme="swiss"] .desk-item:hover .item-label small,
+html[data-theme="swiss"] .desk-item:hover .note-lines i,
+html[data-theme="swiss"] .desk-item:hover .bizcard-role { color: #fff; opacity: 0.75; }
+html[data-theme="swiss"] .desk { counter-reset: cell; }
+html[data-theme="swiss"] .desk-item::before {
+  content: "0" counter(cell);
+  font-weight: 900; font-size: 0.85rem;
+  color: var(--sw-red);
+  letter-spacing: 0.1em;
+}
+
+/* פריסת התאים */
+html[data-theme="swiss"] .sketch          { grid-column: span 2; }
+html[data-theme="swiss"] .polaroid-stack  { grid-column: span 2; }
+html[data-theme="swiss"] .note-process    { grid-column: span 2; border-inline-start-width: 0; }
+html[data-theme="swiss"] .folded          { grid-column: span 2; }
+html[data-theme="swiss"] .note-small      { grid-column: span 2; }
+html[data-theme="swiss"] .bizcard        { grid-column: span 2; border-inline-start-width: 0; }
+
+/* טקסטים בתוך התאים */
+html[data-theme="swiss"] .item-label,
+html[data-theme="swiss"] .note-title,
+html[data-theme="swiss"] .polaroid-caption,
+html[data-theme="swiss"] .bizcard-name {
+  font-family: 'Heebo', sans-serif;
+  font-weight: 900;
+  font-style: normal;
+  font-size: clamp(1.3rem, 2vw, 1.7rem);
+  line-height: 1.15;
+  padding: 0; margin: 0;
+  text-align: start;
+}
+html[data-theme="swiss"] .item-label.big small {
+  font-family: 'Heebo', sans-serif;
+  color: inherit; opacity: 0.6;
+  margin-top: 6px;
+}
+html[data-theme="swiss"] .note,
+html[data-theme="swiss"] .note-small { background: #fff; width: auto; }
+html[data-theme="swiss"] .note-lines { margin-top: 4px; }
+html[data-theme="swiss"] .note-lines i {
+  border: none; color: var(--sw-ink); opacity: 0.7;
+  font-size: 0.95rem; padding: 0;
+}
+html[data-theme="swiss"] .polaroid { position: static; padding: 0; background: none; border: none; box-shadow: none; }
+html[data-theme="swiss"] .polaroid-stack { width: auto; height: auto; }
+html[data-theme="swiss"] .bizcard { color: var(--sw-ink); background: #fff; width: auto; }
+html[data-theme="swiss"] .bizcard:hover { color: #fff; }
+html[data-theme="swiss"] .bizcard-line { background: var(--sw-red); margin: 0; }
+html[data-theme="swiss"] .bizcard-role { opacity: 0.7; margin: 0; }
+
+html[data-theme="swiss"] .desk-foot {
+  position: static;
+  grid-column: 1 / -1;
+  padding: 16px;
+  margin: 0;
+  border-top: 0;
+  color: var(--sw-ink);
+  font-weight: 700; font-size: 0.8rem;
+  letter-spacing: 0.1em;
+}
+
+/* ═══ תחנת הסגנונות ═══ */
+html[data-theme="swiss"] .style-dock {
+  background: #fff;
+  border: 3px solid var(--sw-line);
+  box-shadow: 6px 6px 0 var(--sw-line);
+  border-radius: 0;
+}
+html[data-theme="swiss"] .dock-info { border-color: var(--sw-line); color: var(--sw-red); }
+html[data-theme="swiss"] .dock-options button { color: var(--sw-ink); font-weight: 700; }
+html[data-theme="swiss"] .dock-options button.active { background: var(--sw-red); color: #fff; }
+
+/* ═══ מודלים ═══ */
+html[data-theme="swiss"] .overlay-bg { background: rgba(224, 40, 28, 0.18); backdrop-filter: none; }
+html[data-theme="swiss"] .sheet {
+  background: #fff;
+  border: 3px solid var(--sw-line);
+  box-shadow: 10px 10px 0 var(--sw-line);
+  animation-name: swissIn;
+}
+@keyframes swissIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: none; } }
+html[data-theme="swiss"] .sheet h2,
+html[data-theme="swiss"] .service-list h3,
+html[data-theme="swiss"] .package-row h3,
+html[data-theme="swiss"] .work-meta strong,
+html[data-theme="swiss"] .faq summary,
+html[data-theme="swiss"] .steps li strong,
+html[data-theme="swiss"] .styles-list strong {
+  font-family: 'Heebo', sans-serif;
+  font-weight: 900;
+}
+html[data-theme="swiss"] .sheet-close { border: 2px solid var(--sw-line); border-radius: 0; }
+html[data-theme="swiss"] .sheet-intro,
+html[data-theme="swiss"] .service-list p,
+html[data-theme="swiss"] .package-row p,
+html[data-theme="swiss"] .steps li,
+html[data-theme="swiss"] .faq p,
+html[data-theme="swiss"] .styles-list span { color: #444; }
+html[data-theme="swiss"] .service-list svg { color: var(--sw-red); }
+html[data-theme="swiss"] .service-list li,
+html[data-theme="swiss"] .package-row,
+html[data-theme="swiss"] .steps li,
+html[data-theme="swiss"] .faq details,
+html[data-theme="swiss"] .styles-list li { border-top: 2px solid var(--sw-line); }
+html[data-theme="swiss"] .steps li::before { border: 2px solid var(--sw-line); border-radius: 0; font-family: 'Heebo'; }
+html[data-theme="swiss"] .steps li:nth-child(4)::before { border-color: var(--sw-red); color: var(--sw-red); }
+html[data-theme="swiss"] .package-row.highlight { border-inline-start: 6px solid var(--sw-red); }
+html[data-theme="swiss"] .row-flag { color: var(--sw-red); }
+html[data-theme="swiss"] .faq summary::after { color: var(--sw-red); }
+html[data-theme="swiss"] .work-item { border: 2px solid var(--sw-line); }
+html[data-theme="swiss"] .work-item:hover { box-shadow: 5px 5px 0 var(--sw-line); }
+html[data-theme="swiss"] .ink-link { color: var(--sw-red); }
+html[data-theme="swiss"] .styles-point { border-inline-start-color: var(--sw-red); }
+html[data-theme="swiss"] .btn { background: var(--sw-red); border-radius: 0; }
+html[data-theme="swiss"] .btn:hover { box-shadow: 5px 5px 0 var(--sw-line); transform: none; }
+html[data-theme="swiss"] .btn-ink { background: var(--sw-ink); }
+html[data-theme="swiss"] .field input { border: 2px solid var(--sw-line); border-radius: 0; }
+html[data-theme="swiss"] .field input:focus { border-color: var(--sw-red); }
+
+/* ═══ מובייל ═══ */
+@media (max-width: 900px) {
+  html[data-theme="swiss"] .desk { grid-template-columns: 1fr 1fr; }
+  html[data-theme="swiss"] .desk-head { text-align: start; }
+  html[data-theme="swiss"] .desk-item,
+  html[data-theme="swiss"] .note-process,
+  html[data-theme="swiss"] .bizcard { grid-column: span 2; border-inline-start-width: 0; min-height: 0; margin: 0; }
+  html[data-theme="swiss"] .sketch, html[data-theme="swiss"] .polaroid-stack,
+  html[data-theme="swiss"] .note-small, html[data-theme="swiss"] .folded { grid-column: span 1; }
+  html[data-theme="swiss"] .sketch, html[data-theme="swiss"] .note-small { border-inline-start-width: 0; }
+  html[data-theme="swiss"] .polaroid-stack, html[data-theme="swiss"] .folded { border-inline-start-width: 3px; }
+}

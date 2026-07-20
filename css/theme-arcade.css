@@ -1,0 +1,316 @@
+/* ═══════════════════════════════════════════
+   ערכת "הארקייד" — משחק 8-ביט
+   שחור, צהוב, ירוק ואדום. הבהובים, ניקוד, PRESS START.
+   ═══════════════════════════════════════════ */
+
+html[data-theme="arcade"] {
+  --ar-bg: #050505;
+  --ar-yellow: #ffe600;
+  --ar-green: #00ff85;
+  --ar-red: #ff004d;
+  --ar-cyan: #29adff;
+  --ar-text: #ffffff;
+  --ar-dim: #9a9a9a;
+  --ar-mono: 'Consolas', 'Courier New', monospace;
+}
+
+html[data-theme="arcade"] body {
+  background: var(--ar-bg);
+  background-image: radial-gradient(ellipse at 50% -10%, rgba(41, 173, 255, 0.12), transparent 60%);
+  color: var(--ar-text);
+  font-family: 'Heebo', sans-serif;
+  padding-top: 40px; /* מקום לשורת הניקוד */
+}
+/* מסך CRT */
+html[data-theme="arcade"] body::after {
+  content: '';
+  position: fixed; inset: 0;
+  z-index: 97;
+  pointer-events: none;
+  background: repeating-linear-gradient(0deg, transparent 0 2px, rgba(0, 0, 0, 0.18) 2px 4px);
+}
+
+/* שורת הניקוד */
+html[data-theme="arcade"] .theme-strip {
+  display: block;
+  background: #000;
+  border-bottom: 3px solid var(--ar-yellow);
+  color: var(--ar-yellow);
+  font-family: var(--ar-mono);
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 0.14em;
+  padding: 9px 0;
+  direction: ltr;
+}
+html[data-theme="arcade"] .strip-track { animation: stripLtr 18s linear infinite; }
+
+html[data-theme="arcade"] .decor,
+html[data-theme="arcade"] .desk-hint,
+html[data-theme="arcade"] .drag-tag,
+html[data-theme="arcade"] .tape,
+html[data-theme="arcade"] .pin,
+html[data-theme="arcade"] .p-back,
+html[data-theme="arcade"] .p-mid,
+html[data-theme="arcade"] .fold-crease,
+html[data-theme="arcade"] .polaroid-img,
+html[data-theme="arcade"] .sketch-draw,
+html[data-theme="arcade"] .bizcard-icon { display: none; }
+
+/* ═══ מסך המשחק ═══ */
+html[data-theme="arcade"] .desk {
+  display: flex; flex-direction: column;
+  align-items: center;
+  max-width: 640px;
+  margin-inline: auto;
+  padding: clamp(24px, 4vw, 48px);
+  padding-bottom: 140px;
+  min-height: 0;
+  gap: 14px;
+}
+
+html[data-theme="arcade"] .desk-head {
+  max-width: none;
+  text-align: center;
+  margin: 0 0 26px;
+}
+html[data-theme="arcade"] .studio-mark {
+  font-family: var(--ar-mono);
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  color: var(--ar-cyan);
+  margin-bottom: 26px;
+}
+html[data-theme="arcade"] .studio-mark .brand-name { color: var(--ar-green); }
+html[data-theme="arcade"] .desk-head h1 {
+  font-family: 'Heebo', sans-serif;
+  font-weight: 900;
+  font-size: clamp(2.3rem, 5.5vw, 3.8rem);
+  color: var(--ar-yellow);
+  text-shadow: 4px 4px 0 var(--ar-red);
+  letter-spacing: 0.02em;
+  margin-bottom: 20px;
+}
+html[data-theme="arcade"] .desk-head h1 em {
+  color: var(--ar-green);
+  text-shadow: 4px 4px 0 var(--ar-red);
+}
+html[data-theme="arcade"] .desk-head h1 em::after { display: none; }
+html[data-theme="arcade"] .desk-sub { color: var(--ar-dim); margin-inline: auto; }
+/* PRESS START */
+html[data-theme="arcade"] .styles-hint {
+  color: var(--ar-yellow);
+  border: 3px solid var(--ar-yellow);
+  border-radius: 0;
+  padding: 10px 22px;
+  font-family: var(--ar-mono);
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.14em;
+  box-shadow: 4px 4px 0 #000, 4px 4px 0 1px var(--ar-red);
+  animation: arBlink 1.2s steps(1) infinite;
+}
+@keyframes arBlink { 50% { opacity: 0.35; } }
+html[data-theme="arcade"] .styles-hint:hover { opacity: 1; animation: none; background: rgba(255, 230, 0, 0.1); }
+
+/* ═══ הפריטים — תפריט משחק ═══ */
+html[data-theme="arcade"] .desk-item {
+  position: relative;
+  inset: auto;
+  transform: none;
+  animation: none;
+  width: 100%; height: auto;
+  margin: 0;
+  padding: 20px 22px;
+  background: #0a0a0a;
+  border: 4px solid var(--ar-cyan);
+  border-radius: 0;
+  box-shadow: 6px 6px 0 #000, 6px 6px 0 2px rgba(41, 173, 255, 0.4);
+  display: flex; align-items: center; gap: 16px;
+  transition: none;
+}
+html[data-theme="arcade"] .desk-item:nth-of-type(2) { border-color: var(--ar-green); box-shadow: 6px 6px 0 #000, 6px 6px 0 2px rgba(0, 255, 133, 0.4); }
+html[data-theme="arcade"] .desk-item:nth-of-type(3) { border-color: var(--ar-yellow); box-shadow: 6px 6px 0 #000, 6px 6px 0 2px rgba(255, 230, 0, 0.4); }
+html[data-theme="arcade"] .desk-item:nth-of-type(4) { border-color: var(--ar-red); box-shadow: 6px 6px 0 #000, 6px 6px 0 2px rgba(255, 0, 77, 0.4); }
+html[data-theme="arcade"] .desk-item:nth-of-type(5) { border-color: var(--ar-cyan); box-shadow: 6px 6px 0 #000, 6px 6px 0 2px rgba(41, 173, 255, 0.4); }
+html[data-theme="arcade"] .desk-item:nth-of-type(6) { border-color: var(--ar-green); box-shadow: 6px 6px 0 #000, 6px 6px 0 2px rgba(0, 255, 133, 0.4); }
+/* חץ הבחירה — מהבהב רק על הפריט הנבחר */
+html[data-theme="arcade"] .desk-item::before {
+  content: '◄';
+  color: var(--ar-yellow);
+  font-size: 1rem;
+  flex-shrink: 0;
+  opacity: 0.2;
+  transform: scaleX(-1); /* מצביע פנימה ב-RTL */
+}
+html[data-theme="arcade"] .desk-item:hover::before,
+html[data-theme="arcade"] .desk-item:focus-visible::before {
+  opacity: 1;
+  animation: arBlink 0.5s steps(1) infinite;
+}
+/* +100 בריחוף */
+html[data-theme="arcade"] .desk-item::after {
+  content: '+100';
+  position: absolute;
+  top: 8px; inset-inline-end: 14px;
+  font-family: var(--ar-mono);
+  font-weight: 700;
+  color: var(--ar-green);
+  opacity: 0;
+  pointer-events: none;
+}
+html[data-theme="arcade"] .desk-item:hover {
+  transform: translate(-3px, -3px);
+}
+html[data-theme="arcade"] .desk-item:hover::after {
+  animation: arScore 0.7s steps(5) forwards;
+}
+@keyframes arScore {
+  from { opacity: 1; translate: 0 0; }
+  to { opacity: 0; translate: 0 -26px; }
+}
+
+html[data-theme="arcade"] .item-label,
+html[data-theme="arcade"] .note-title,
+html[data-theme="arcade"] .polaroid-caption,
+html[data-theme="arcade"] .bizcard-name {
+  font-family: 'Heebo', sans-serif;
+  font-weight: 900;
+  font-style: normal;
+  font-size: 1.2rem;
+  letter-spacing: 0.03em;
+  color: var(--ar-text);
+  padding: 0; margin: 0;
+  text-align: start;
+}
+html[data-theme="arcade"] .item-label.big { font-size: 1.2rem; }
+html[data-theme="arcade"] .item-label.big small {
+  display: inline;
+  margin-inline-start: 10px;
+  font-family: 'Heebo'; font-weight: 400; font-size: 0.85rem;
+  color: var(--ar-dim);
+}
+html[data-theme="arcade"] .note,
+html[data-theme="arcade"] .note-small,
+html[data-theme="arcade"] .paper { background: #0a0a0a; width: 100%; box-shadow: none; color: var(--ar-text); }
+html[data-theme="arcade"] .note, html[data-theme="arcade"] .note-small { box-shadow: 6px 6px 0 #000; }
+html[data-theme="arcade"] .note-lines { flex-direction: row; gap: 10px; margin-top: 2px; }
+html[data-theme="arcade"] .note-lines i {
+  border: none; padding: 0;
+  font-family: var(--ar-mono);
+  font-size: 0.8rem;
+  color: var(--ar-dim);
+}
+html[data-theme="arcade"] .polaroid { position: static; padding: 0; background: none; border: none; box-shadow: none; height: auto; }
+html[data-theme="arcade"] .polaroid-stack { width: 100%; height: auto; }
+html[data-theme="arcade"] .bizcard {
+  background: #0a0a0a;
+  color: var(--ar-text);
+  width: 100%;
+  flex-direction: row; align-items: center;
+}
+html[data-theme="arcade"] .bizcard-line { width: 24px; height: 4px; background: var(--ar-green); margin: 0; }
+html[data-theme="arcade"] .bizcard-role { color: var(--ar-dim); opacity: 1; margin: 0; }
+
+html[data-theme="arcade"] .desk-foot {
+  position: static;
+  margin-top: 22px;
+  font-family: var(--ar-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  color: var(--ar-dim);
+  text-align: center;
+}
+html[data-theme="arcade"] .desk-foot span::after { content: ' — GAME OVER? NEVER.'; direction: ltr; unicode-bidi: embed; color: var(--ar-yellow); }
+
+/* ═══ התחנה ═══ */
+html[data-theme="arcade"] .style-dock {
+  background: #000;
+  border: 3px solid var(--ar-yellow);
+  border-radius: 0;
+  box-shadow: 5px 5px 0 var(--ar-red);
+}
+html[data-theme="arcade"] .dock-info { border: 2px solid var(--ar-yellow); color: var(--ar-yellow); border-radius: 0; }
+html[data-theme="arcade"] .dock-info:hover { background: rgba(255, 230, 0, 0.12); }
+html[data-theme="arcade"] .dock-current { border: 2px solid var(--ar-cyan); color: var(--ar-text); font-family: var(--ar-mono); font-size: 0.85rem; }
+
+/* ═══ מודלים ═══ */
+html[data-theme="arcade"] .overlay-bg { background: rgba(0, 0, 0, 0.8); }
+html[data-theme="arcade"] .sheet {
+  background: #0a0a0a;
+  border: 4px solid var(--ar-yellow);
+  border-radius: 0;
+  box-shadow: 8px 8px 0 var(--ar-red);
+  color: var(--ar-text);
+}
+html[data-theme="arcade"] .sheet h2 {
+  font-family: 'Heebo'; font-weight: 900;
+  color: var(--ar-yellow);
+  text-shadow: 3px 3px 0 var(--ar-red);
+}
+html[data-theme="arcade"] .sheet-close { background: #000; border: 3px solid var(--ar-red); border-radius: 0; color: var(--ar-red); }
+html[data-theme="arcade"] .sheet-close:hover { background: rgba(255, 0, 77, 0.15); transform: none; }
+html[data-theme="arcade"] .sheet-intro,
+html[data-theme="arcade"] .service-list p,
+html[data-theme="arcade"] .package-row p,
+html[data-theme="arcade"] .steps li,
+html[data-theme="arcade"] .faq p,
+html[data-theme="arcade"] .work-meta em,
+html[data-theme="arcade"] .sheet-note,
+html[data-theme="arcade"] .styles-list span,
+html[data-theme="arcade"] .styles-point { color: var(--ar-dim); }
+html[data-theme="arcade"] .service-list h3,
+html[data-theme="arcade"] .package-row h3,
+html[data-theme="arcade"] .work-meta strong,
+html[data-theme="arcade"] .faq summary,
+html[data-theme="arcade"] .steps li strong,
+html[data-theme="arcade"] .styles-list strong { font-family: 'Heebo'; font-weight: 900; color: var(--ar-text); }
+html[data-theme="arcade"] .service-list svg { color: var(--ar-cyan); }
+html[data-theme="arcade"] .service-list li:nth-child(2) svg { color: var(--ar-green); }
+html[data-theme="arcade"] .service-list li:nth-child(3) svg { color: var(--ar-yellow); }
+html[data-theme="arcade"] .service-list li:nth-child(4) svg { color: var(--ar-red); }
+html[data-theme="arcade"] .service-list li,
+html[data-theme="arcade"] .package-row,
+html[data-theme="arcade"] .steps li,
+html[data-theme="arcade"] .faq details,
+html[data-theme="arcade"] .styles-list li { border-top: 2px solid rgba(255, 255, 255, 0.15); }
+html[data-theme="arcade"] .steps li::before {
+  border: 3px solid var(--ar-green);
+  border-radius: 0;
+  color: var(--ar-green);
+  font-family: var(--ar-mono);
+}
+html[data-theme="arcade"] .package-row.highlight { border-inline-start: 6px solid var(--ar-yellow); }
+html[data-theme="arcade"] .row-flag { color: var(--ar-yellow); font-family: var(--ar-mono); }
+html[data-theme="arcade"] .faq summary::after { color: var(--ar-green); }
+html[data-theme="arcade"] .work-item { background: #000; border: 3px solid var(--ar-cyan); border-radius: 0; }
+html[data-theme="arcade"] .work-item:hover { border-color: var(--ar-yellow); box-shadow: 5px 5px 0 #000; }
+html[data-theme="arcade"] .work-thumb { border: none; filter: saturate(1.6) contrast(1.2); image-rendering: pixelated; }
+html[data-theme="arcade"] .ink-link { color: var(--ar-green); }
+html[data-theme="arcade"] .styles-point { border-inline-start-color: var(--ar-yellow); }
+html[data-theme="arcade"] .btn {
+  background: var(--ar-yellow); color: #000;
+  border-radius: 0;
+  font-weight: 900;
+  box-shadow: 5px 5px 0 var(--ar-red);
+}
+html[data-theme="arcade"] .btn:hover { transform: translate(-2px, -2px); box-shadow: 7px 7px 0 var(--ar-red); }
+html[data-theme="arcade"] .btn-ink { background: transparent; color: var(--ar-green); border: 3px solid var(--ar-green); box-shadow: 5px 5px 0 #000; }
+html[data-theme="arcade"] .or-line { color: var(--ar-dim); font-family: var(--ar-mono); font-size: 0.8rem; }
+html[data-theme="arcade"] .or-line::before, html[data-theme="arcade"] .or-line::after { border-color: rgba(255, 255, 255, 0.2); }
+html[data-theme="arcade"] .field input {
+  background: #000;
+  border: 3px solid rgba(255, 255, 255, 0.25);
+  border-radius: 0;
+  color: var(--ar-text);
+  font-family: var(--ar-mono);
+}
+html[data-theme="arcade"] .field input:focus { border-color: var(--ar-green); }
+html[data-theme="arcade"] .form-note.ok { color: var(--ar-green); font-family: var(--ar-mono); }
+html[data-theme="arcade"] .form-note.err { color: var(--ar-red); font-family: var(--ar-mono); }
+
+/* ═══ מובייל ═══ */
+@media (max-width: 900px) {
+  html[data-theme="arcade"] .desk-item { margin: 0; }
+  html[data-theme="arcade"] .theme-strip { font-size: 0.78rem; }
+}

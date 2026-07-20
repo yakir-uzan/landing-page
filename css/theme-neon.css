@@ -1,0 +1,298 @@
+/* ═══════════════════════════════════════════
+   ערכת "הניאון" — סייברפאנק
+   שלטי ניאון ורוד/ציאן, גליץ', סקאנליינס.
+   ═══════════════════════════════════════════ */
+
+html[data-theme="neon"] {
+  --nn-bg: #0c0614;
+  --nn-panel: rgba(26, 12, 42, 0.65);
+  --nn-pink: #ff2ec4;
+  --nn-cyan: #00e5ff;
+  --nn-text: #f6ecff;
+  --nn-dim: #a790c9;
+  --nn-line: rgba(255, 46, 196, 0.35);
+}
+
+html[data-theme="neon"] body {
+  background: var(--nn-bg);
+  background-image:
+    radial-gradient(50% 40% at 80% 0%, rgba(255, 46, 196, 0.13), transparent 70%),
+    radial-gradient(45% 40% at 10% 90%, rgba(0, 229, 255, 0.1), transparent 70%);
+  color: var(--nn-text);
+  font-family: 'Rubik', sans-serif;
+}
+/* סקאנליינס של מסך ישן */
+html[data-theme="neon"] body::after {
+  content: '';
+  position: fixed; inset: 0;
+  z-index: 97;
+  pointer-events: none;
+  background: repeating-linear-gradient(0deg, transparent 0 3px, rgba(0, 0, 0, 0.14) 3px 4px);
+}
+
+html[data-theme="neon"] .decor,
+html[data-theme="neon"] .desk-hint,
+html[data-theme="neon"] .drag-tag,
+html[data-theme="neon"] .tape,
+html[data-theme="neon"] .pin,
+html[data-theme="neon"] .p-back,
+html[data-theme="neon"] .p-mid,
+html[data-theme="neon"] .fold-crease,
+html[data-theme="neon"] .polaroid-img,
+html[data-theme="neon"] .sketch-draw,
+html[data-theme="neon"] .bizcard-icon { display: none; }
+
+/* ═══ פריסה ═══ */
+html[data-theme="neon"] .desk {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+  align-content: start;
+  max-width: 920px;
+  margin-inline: auto;
+  padding: clamp(24px, 4vw, 56px);
+  padding-bottom: 140px;
+  min-height: 0;
+}
+html[data-theme="neon"] .desk-head {
+  grid-column: 1 / -1;
+  max-width: none;
+  text-align: center;
+  margin: 0 0 30px;
+}
+html[data-theme="neon"] .studio-mark {
+  display: inline-block;
+  font-size: 0.9rem;
+  letter-spacing: 0.24em;
+  color: var(--nn-cyan);
+  text-shadow: 0 0 12px rgba(0, 229, 255, 0.8);
+  margin-bottom: 28px;
+  text-transform: uppercase;
+}
+html[data-theme="neon"] .studio-mark .brand-name {
+  color: var(--nn-pink);
+  text-shadow: 0 0 14px rgba(255, 46, 196, 0.9);
+}
+html[data-theme="neon"] .desk-head h1 {
+  font-family: 'Rubik', sans-serif;
+  font-weight: 800;
+  font-size: clamp(2.5rem, 6vw, 4.4rem);
+  color: #fff;
+  margin-bottom: 22px;
+  animation: nnGlitch 4.5s steps(1) infinite;
+}
+@keyframes nnGlitch {
+  0%, 91%, 100% {
+    text-shadow: 0 0 18px rgba(255, 255, 255, 0.35);
+    transform: none;
+  }
+  92% {
+    text-shadow: -3px 0 var(--nn-pink), 3px 0 var(--nn-cyan);
+    transform: translateX(2px) skewX(-2deg);
+  }
+  94% {
+    text-shadow: 3px 0 var(--nn-pink), -3px 0 var(--nn-cyan);
+    transform: translateX(-2px);
+  }
+  96% {
+    text-shadow: -2px 0 var(--nn-cyan), 2px 0 var(--nn-pink);
+    transform: skewX(1.5deg);
+  }
+  98% { text-shadow: 0 0 18px rgba(255, 255, 255, 0.35); transform: none; }
+}
+html[data-theme="neon"] .desk-head h1 em {
+  color: var(--nn-pink);
+  text-shadow: 0 0 10px rgba(255, 46, 196, 0.9), 0 0 42px rgba(255, 46, 196, 0.5);
+}
+html[data-theme="neon"] .desk-head h1 em::after { display: none; }
+html[data-theme="neon"] .desk-sub { color: var(--nn-dim); margin-inline: auto; }
+html[data-theme="neon"] .styles-hint {
+  color: var(--nn-cyan);
+  border: 1px solid rgba(0, 229, 255, 0.5);
+  border-radius: 4px;
+  padding: 9px 18px;
+  box-shadow: 0 0 14px rgba(0, 229, 255, 0.25), inset 0 0 14px rgba(0, 229, 255, 0.1);
+  font-weight: 500;
+}
+html[data-theme="neon"] .styles-hint:hover { opacity: 1; box-shadow: 0 0 24px rgba(0, 229, 255, 0.5), inset 0 0 18px rgba(0, 229, 255, 0.15); }
+
+/* ═══ הפריטים — שלטי ניאון ═══ */
+html[data-theme="neon"] .desk-item {
+  position: static;
+  transform: none;
+  width: auto; height: auto;
+  margin: 0;
+  padding: 28px 24px;
+  background: var(--nn-panel);
+  border: 2px solid var(--nn-pink);
+  border-radius: 10px;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 0 16px rgba(255, 46, 196, 0.35), inset 0 0 22px rgba(255, 46, 196, 0.08);
+  display: flex; flex-direction: column; align-items: flex-start; gap: 8px;
+  animation: nnFlicker 7s steps(1) infinite;
+  transition: box-shadow 0.2s, transform 0.15s;
+}
+/* מחצית מהשלטים בציאן */
+html[data-theme="neon"] .desk-item:nth-of-type(even) {
+  border-color: var(--nn-cyan);
+  box-shadow: 0 0 16px rgba(0, 229, 255, 0.3), inset 0 0 22px rgba(0, 229, 255, 0.08);
+}
+html[data-theme="neon"] .desk-item:nth-of-type(2) { animation-delay: 1.4s; }
+html[data-theme="neon"] .desk-item:nth-of-type(3) { animation-delay: 2.9s; }
+html[data-theme="neon"] .desk-item:nth-of-type(4) { animation-delay: 4.1s; }
+html[data-theme="neon"] .desk-item:nth-of-type(5) { animation-delay: 5.3s; }
+html[data-theme="neon"] .desk-item:nth-of-type(6) { animation-delay: 0.7s; }
+@keyframes nnFlicker {
+  0%, 88.5%, 89.5%, 100% { opacity: 1; }
+  89% { opacity: 0.55; }
+  89.2% { opacity: 0.85; }
+}
+html[data-theme="neon"] .desk-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 34px rgba(255, 46, 196, 0.6), inset 0 0 28px rgba(255, 46, 196, 0.14);
+}
+html[data-theme="neon"] .desk-item:nth-of-type(even):hover {
+  box-shadow: 0 0 34px rgba(0, 229, 255, 0.55), inset 0 0 28px rgba(0, 229, 255, 0.14);
+}
+html[data-theme="neon"] .bizcard { grid-column: 1 / -1; align-items: center; text-align: center; }
+
+html[data-theme="neon"] .item-label,
+html[data-theme="neon"] .note-title,
+html[data-theme="neon"] .polaroid-caption,
+html[data-theme="neon"] .bizcard-name {
+  font-family: 'Rubik', sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 1.3rem;
+  color: #fff;
+  text-shadow: 0 0 10px rgba(255, 46, 196, 0.7);
+  padding: 0; margin: 0;
+  text-align: start;
+}
+html[data-theme="neon"] .desk-item:nth-of-type(even) .item-label,
+html[data-theme="neon"] .desk-item:nth-of-type(even) .note-title,
+html[data-theme="neon"] .desk-item:nth-of-type(even) .polaroid-caption {
+  text-shadow: 0 0 10px rgba(0, 229, 255, 0.7);
+}
+html[data-theme="neon"] .item-label.big small {
+  font-family: 'Rubik'; font-weight: 400;
+  color: var(--nn-dim); text-shadow: none; margin-top: 4px;
+}
+html[data-theme="neon"] .note,
+html[data-theme="neon"] .note-small,
+html[data-theme="neon"] .paper { background: transparent; width: auto; color: var(--nn-text); }
+html[data-theme="neon"] .note-lines { flex-direction: row; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+html[data-theme="neon"] .note-lines i {
+  border: 1px solid rgba(0, 229, 255, 0.4);
+  border-radius: 4px;
+  padding: 3px 10px;
+  font-size: 0.8rem;
+  color: var(--nn-cyan);
+}
+html[data-theme="neon"] .polaroid { position: static; padding: 0; background: none; border: none; box-shadow: none; height: auto; }
+html[data-theme="neon"] .polaroid-stack { width: auto; height: auto; }
+html[data-theme="neon"] .bizcard-name { text-align: center; font-size: 1.5rem; }
+html[data-theme="neon"] .bizcard-line { width: 70px; height: 2px; background: var(--nn-cyan); box-shadow: 0 0 10px var(--nn-cyan); margin-inline: auto; }
+html[data-theme="neon"] .bizcard-role { color: var(--nn-dim); opacity: 1; text-align: center; }
+
+html[data-theme="neon"] .desk-foot {
+  position: static;
+  grid-column: 1 / -1;
+  margin-top: 24px;
+  text-align: center;
+  color: var(--nn-dim);
+}
+
+/* ═══ התחנה ═══ */
+html[data-theme="neon"] .style-dock {
+  background: rgba(16, 8, 28, 0.9);
+  border: 1px solid var(--nn-line);
+  border-radius: 8px;
+  box-shadow: 0 0 22px rgba(255, 46, 196, 0.25);
+  backdrop-filter: blur(12px);
+}
+html[data-theme="neon"] .dock-info { border-color: var(--nn-line); color: var(--nn-cyan); }
+html[data-theme="neon"] .dock-info:hover { background: rgba(0, 229, 255, 0.1); }
+html[data-theme="neon"] .dock-current { border-color: var(--nn-line); color: var(--nn-text); }
+
+/* ═══ מודלים ═══ */
+html[data-theme="neon"] .overlay-bg { background: rgba(6, 2, 12, 0.75); }
+html[data-theme="neon"] .sheet {
+  background: #140a22;
+  border: 2px solid var(--nn-pink);
+  border-radius: 12px;
+  box-shadow: 0 0 46px rgba(255, 46, 196, 0.3);
+  color: var(--nn-text);
+}
+html[data-theme="neon"] .sheet h2 {
+  font-family: 'Rubik'; font-weight: 800; color: #fff;
+  text-shadow: 0 0 14px rgba(255, 46, 196, 0.8);
+}
+html[data-theme="neon"] .sheet-close { background: transparent; border-color: var(--nn-line); color: var(--nn-text); }
+html[data-theme="neon"] .sheet-close:hover { background: rgba(255, 46, 196, 0.15); }
+html[data-theme="neon"] .sheet-intro,
+html[data-theme="neon"] .service-list p,
+html[data-theme="neon"] .package-row p,
+html[data-theme="neon"] .steps li,
+html[data-theme="neon"] .faq p,
+html[data-theme="neon"] .work-meta em,
+html[data-theme="neon"] .sheet-note,
+html[data-theme="neon"] .styles-list span,
+html[data-theme="neon"] .styles-point { color: var(--nn-dim); }
+html[data-theme="neon"] .service-list h3,
+html[data-theme="neon"] .package-row h3,
+html[data-theme="neon"] .work-meta strong,
+html[data-theme="neon"] .faq summary,
+html[data-theme="neon"] .steps li strong,
+html[data-theme="neon"] .styles-list strong { font-family: 'Rubik'; color: #fff; }
+html[data-theme="neon"] .service-list svg { color: var(--nn-cyan); filter: drop-shadow(0 0 6px rgba(0, 229, 255, 0.7)); }
+html[data-theme="neon"] .service-list li:nth-child(odd) svg { color: var(--nn-pink); filter: drop-shadow(0 0 6px rgba(255, 46, 196, 0.7)); }
+html[data-theme="neon"] .service-list li,
+html[data-theme="neon"] .package-row,
+html[data-theme="neon"] .steps li,
+html[data-theme="neon"] .faq details,
+html[data-theme="neon"] .styles-list li { border-top: 1px solid rgba(255, 46, 196, 0.2); }
+html[data-theme="neon"] .steps li::before {
+  border: 1px solid var(--nn-cyan);
+  color: var(--nn-cyan);
+  box-shadow: 0 0 10px rgba(0, 229, 255, 0.4);
+  border-radius: 4px;
+  font-family: 'Rubik';
+}
+html[data-theme="neon"] .package-row.highlight { border-inline-start: 3px solid var(--nn-pink); }
+html[data-theme="neon"] .row-flag { color: var(--nn-pink); text-shadow: 0 0 8px rgba(255, 46, 196, 0.8); }
+html[data-theme="neon"] .faq summary::after { color: var(--nn-pink); }
+html[data-theme="neon"] .work-item { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(0, 229, 255, 0.3); border-radius: 8px; }
+html[data-theme="neon"] .work-item:hover { border-color: var(--nn-cyan); box-shadow: 0 0 22px rgba(0, 229, 255, 0.3); }
+html[data-theme="neon"] .work-thumb { border: none; border-radius: 5px; overflow: hidden; filter: saturate(0.7) hue-rotate(230deg) brightness(0.85); }
+html[data-theme="neon"] .ink-link { color: var(--nn-cyan); }
+html[data-theme="neon"] .styles-point { border-inline-start-color: var(--nn-pink); }
+html[data-theme="neon"] .btn {
+  background: var(--nn-pink); color: #14041c;
+  border-radius: 6px; font-weight: 700;
+  box-shadow: 0 0 22px rgba(255, 46, 196, 0.5);
+}
+html[data-theme="neon"] .btn:hover { box-shadow: 0 0 38px rgba(255, 46, 196, 0.8); }
+html[data-theme="neon"] .btn-ink {
+  background: transparent; color: var(--nn-cyan);
+  border: 1px solid var(--nn-cyan);
+  box-shadow: 0 0 14px rgba(0, 229, 255, 0.3), inset 0 0 14px rgba(0, 229, 255, 0.08);
+}
+html[data-theme="neon"] .or-line { color: var(--nn-dim); }
+html[data-theme="neon"] .or-line::before, html[data-theme="neon"] .or-line::after { border-color: rgba(255, 46, 196, 0.25); }
+html[data-theme="neon"] .field input {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(0, 229, 255, 0.35);
+  border-radius: 6px;
+  color: var(--nn-text);
+}
+html[data-theme="neon"] .field input:focus { border-color: var(--nn-cyan); box-shadow: 0 0 14px rgba(0, 229, 255, 0.3); }
+html[data-theme="neon"] .form-note.ok { color: var(--nn-cyan); }
+html[data-theme="neon"] .form-note.err { color: var(--nn-pink); }
+
+/* ═══ מובייל ═══ */
+@media (max-width: 900px) {
+  html[data-theme="neon"] .desk { grid-template-columns: 1fr; }
+  html[data-theme="neon"] .desk-item,
+  html[data-theme="neon"] .bizcard { grid-column: span 1; margin: 0; width: auto; }
+}

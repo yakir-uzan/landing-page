@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="הסטודיו של יקיר">
+  <rect width="64" height="64" rx="14" fill="#c73e1d"/>
+  <rect x="15" y="17" width="34" height="28" rx="4.5" fill="none" stroke="#fff" stroke-width="3.6"/>
+  <line x1="15" y1="26" x2="49" y2="26" stroke="#fff" stroke-width="3.6"/>
+  <circle cx="20.5" cy="21.5" r="1.7" fill="#fff"/>
+  <rect x="21" y="32" width="15" height="3.2" rx="1.6" fill="#fff"/>
+  <rect x="21" y="38.5" width="9" height="3.2" rx="1.6" fill="#fff" opacity="0.7"/>
+</svg>

@@ -1,42 +1,40 @@
 <!DOCTYPE html>
-<html lang="he" dir="rtl" data-theme="desk">
+<html lang="he" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#c73e1d">
-  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-  <link rel="canonical" href="https://yakir-uzan.github.io/landing-page/">
-  <!-- SEO — החלף את שם המותג והכתובת כשתחליט -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0e0d0b" />
+  <link rel="icon" href="/landing-page/assets/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/landing-page/assets/apple-touch-icon.png" />
+  <link rel="canonical" href="https://yakir-uzan.github.io/landing-page/" />
+
+  <!-- SEO -->
   <title>הסטודיו של יקיר — אתרים ואפליקציות לעסקים</title>
-  <meta name="description" content="סטודיו של איש אחד לאתרים ואפליקציות לעסקים קטנים. בלי תבניות, בלי רעש — עבודה אישית מהרעיון ועד האוויר.">
-  <meta property="og:title" content="הסטודיו של יקיר — אתרים ואפליקציות לעסקים">
-  <meta property="og:description" content="סטודיו של איש אחד לאתרים ואפליקציות לעסקים קטנים. עבודה אישית מהרעיון ועד האוויר.">
-  <meta property="og:type" content="website">
-  <meta property="og:locale" content="he_IL">
-  <meta property="og:site_name" content="הסטודיו של יקיר">
-  <meta property="og:url" content="https://yakir-uzan.github.io/landing-page/">
-  <meta property="og:image" content="https://yakir-uzan.github.io/landing-page/assets/og-image.jpg">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="הסטודיו של יקיר — אני בונה אתרים שאנשים זוכרים">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="הסטודיו של יקיר — אתרים ואפליקציות לעסקים">
-  <meta name="twitter:description" content="סטודיו של איש אחד לאתרים ואפליקציות לעסקים קטנים. עבודה אישית מהרעיון ועד האוויר.">
-  <meta name="twitter:image" content="https://yakir-uzan.github.io/landing-page/assets/og-image.jpg">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700;900&family=Assistant:wght@300;400;600;700&family=Heebo:wght@300;400;700;900&family=Rubik:wght@400;500;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/theme-swiss.css">
-  <link rel="stylesheet" href="css/theme-tech.css">
-  <link rel="stylesheet" href="css/theme-soft.css">
-  <link rel="stylesheet" href="css/theme-galaxy.css">
-  <link rel="stylesheet" href="css/theme-neon.css">
-  <link rel="stylesheet" href="css/theme-paper.css">
-  <link rel="stylesheet" href="css/theme-blueprint.css">
-  <link rel="stylesheet" href="css/theme-arcade.css">
-  <link rel="stylesheet" href="css/theme-lux.css">
+  <meta name="description" content="סטודיו של איש אחד לאתרים ואפליקציות לעסקים קטנים. בלי תבניות, בלי רעש — עבודה אישית מהרעיון ועד האוויר." />
+  <meta property="og:title" content="הסטודיו של יקיר — אתרים ואפליקציות לעסקים" />
+  <meta property="og:description" content="סטודיו של איש אחד לאתרים ואפליקציות לעסקים קטנים. עבודה אישית מהרעיון ועד האוויר." />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="he_IL" />
+  <meta property="og:site_name" content="הסטודיו של יקיר" />
+  <meta property="og:url" content="https://yakir-uzan.github.io/landing-page/" />
+  <meta property="og:image" content="https://yakir-uzan.github.io/landing-page/assets/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="הסטודיו של יקיר — אתרים ואפליקציות לעסקים" />
+  <meta name="twitter:description" content="סטודיו של איש אחד לאתרים ואפליקציות לעסקים קטנים. עבודה אישית מהרעיון ועד האוויר." />
+  <meta name="twitter:image" content="https://yakir-uzan.github.io/landing-page/assets/og-image.jpg" />
+
+  <!-- פונטים -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800;900&family=Rubik:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <!-- אנימציות — ספריות דרך CDN (נגישות כ-window.gsap / window.Lenis) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js" defer></script>
+
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -55,310 +53,7 @@
   </script>
 </head>
 <body>
-
-  <!-- גשם אותיות — פעיל רק בערכת העורך -->
-  <canvas class="tech-rain" id="techRain" aria-hidden="true"></canvas>
-
-  <!-- שדה כוכבים + שובל עכבר — פעילים רק בערכת הגלקסיה -->
-  <canvas class="gx-stars" id="gxStars" aria-hidden="true"></canvas>
-  <canvas class="gx-trail" id="gxTrail" aria-hidden="true"></canvas>
-
-  <!-- ═══ השולחן ═══ -->
-  <div class="desk" id="desk">
-
-    <!-- קישוטים -->
-    <svg class="decor decor-coffee" viewBox="0 0 120 120" aria-hidden="true">
-      <circle cx="60" cy="60" r="44" fill="none" stroke="currentColor" stroke-width="7" opacity="0.5"/>
-      <circle cx="60" cy="60" r="36" fill="none" stroke="currentColor" stroke-width="2" opacity="0.35"/>
-    </svg>
-    <svg class="decor decor-pencil" viewBox="0 0 200 24" aria-hidden="true">
-      <rect x="24" y="7" width="140" height="10" rx="2" fill="currentColor" opacity="0.85"/>
-      <polygon points="24,7 4,12 24,17" fill="currentColor" opacity="0.55"/>
-      <rect x="164" y="7" width="16" height="10" rx="3" fill="#c73e1d" opacity="0.8"/>
-    </svg>
-
-    <!-- כותרת -->
-    <header class="desk-head">
-      <p class="tech-cmd" aria-hidden="true" dir="ltr"><span id="techCmdText"></span><span class="tech-caret"></span></p>
-      <div class="np-masthead" aria-hidden="true"><span class="brand-name">הסטודיו של יקיר</span></div>
-      <p class="studio-mark"><span class="brand-name">הסטודיו של יקיר</span> · אתרים ואפליקציות</p>
-      <p class="np-dateline" aria-hidden="true"><span>גיליון מס׳ 001</span><span>העיתון לעסקים קטנים</span><span id="npDate"></span><span>המחיר: שיחת טלפון · חינם</span></p>
-      <h1>אני בונה אתרים<br>שאנשים <em>זוכרים.</em></h1>
-      <p class="desk-sub">סטודיו של איש אחד, לעסקים קטנים עם שאיפות גדולות.<br>בלי תבניות ובלי רעש — עבודה אישית, מהרעיון ועד האוויר.</p>
-      <p class="desk-hint" aria-hidden="true">
-        הכל מונח על השולחן — אפשר להזיז, להרים ולהציץ
-        <svg viewBox="0 0 60 40" class="hint-arrow"><path d="M4 6 C 24 10, 40 18, 50 34" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M42 30 L 50 34 L 51 25" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </p>
-      <button class="styles-hint" data-modal-open="m-styles">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9c0-1.6-1.3-2.5-2.6-2.5H16a2.5 2.5 0 0 1-2.5-2.5V5.6C13.5 4.2 13 3 12 3Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><circle cx="7.5" cy="10.5" r="1.1" fill="currentColor"/><circle cx="10" cy="7" r="1.1" fill="currentColor"/><circle cx="14.5" cy="15.5" r="1.1" fill="currentColor"/></svg>
-        האתר הזה קיים בעשרה עיצובים שונים — למה?
-      </button>
-    </header>
-
-    <!-- ═══ פריטים על השולחן ═══ -->
-
-    <!-- סקיצה: מה אני בונה -->
-    <button class="desk-item paper sketch" data-modal="m-services" style="--r:-4deg" aria-haspopup="dialog">
-      <span class="tape" aria-hidden="true"></span>
-      <svg viewBox="0 0 220 150" class="sketch-draw" aria-hidden="true">
-        <rect x="10" y="10" width="200" height="130" rx="4" fill="none" stroke="currentColor" stroke-width="1.5"/>
-        <line x1="10" y1="34" x2="210" y2="34" stroke="currentColor" stroke-width="1.5"/>
-        <circle cx="26" cy="22" r="4" fill="none" stroke="currentColor" stroke-width="1.5"/>
-        <line x1="150" y1="22" x2="196" y2="22" stroke="currentColor" stroke-width="1.5"/>
-        <rect x="26" y="48" width="90" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/>
-        <line x1="26" y1="72" x2="140" y2="72" stroke="currentColor" stroke-width="1.5"/>
-        <line x1="26" y1="82" x2="120" y2="82" stroke="currentColor" stroke-width="1.5"/>
-        <rect x="26" y="96" width="56" height="18" rx="9" fill="none" stroke="#c73e1d" stroke-width="2"/>
-        <rect x="150" y="48" width="44" height="66" rx="3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="4 4"/>
-      </svg>
-      <span class="item-label">מה אני בונה</span>
-      <span class="np-byline" aria-hidden="true">מאת יקיר עוזן · כתב הסטודיו</span>
-      <span class="np-body" aria-hidden="true">בַּסטודיו נבנים ארבעה סוגי מוצרים דיגיטליים — דפי נחיתה ממוקדי המרה, אתרי תדמית, חנויות אונליין ואפליקציות ווב. כל פרויקט מתחיל בהקשבה אל העסק ומסתיים במוצר שמדבר בשפה שלו, ללא תבניות מדף וללא פשרות על מהירות הטעינה או על היחס האישי.</span>
-      <!-- תגית "נסו לגרור" — מוצגת רק על השולחן, בדסקטופ -->
-      <span class="drag-tag" aria-hidden="true">
-        <svg class="tag-string" viewBox="0 0 36 30"><path d="M18 2 C 15 12, 20 20, 17 28" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-dasharray="3 3"/></svg>
-        <span class="tag-card">נסו לגרור אותי</span>
-      </span>
-    </button>
-
-    <!-- פולארויד: עבודות -->
-    <button class="desk-item polaroid-stack" data-modal="m-work" style="--r:3deg" aria-haspopup="dialog">
-      <span class="polaroid p-back" aria-hidden="true"></span>
-      <span class="polaroid p-mid" aria-hidden="true"></span>
-      <span class="polaroid p-front">
-        <span class="polaroid-img" aria-hidden="true">
-          <svg viewBox="0 0 160 110"><rect width="160" height="110" fill="#e9e2d2"/><path d="M0 84 L48 46 L86 74 L118 52 L160 80 L160 110 L0 110 Z" fill="#cfc4ab"/><circle cx="120" cy="30" r="12" fill="#c73e1d" opacity="0.85"/></svg>
-        </span>
-        <span class="polaroid-caption">עבודות נבחרות</span>
-      </span>
-      <span class="np-photo-credit" aria-hidden="true">צילום: ארכיון הסטודיו</span>
-      <span class="np-byline" aria-hidden="true">מדור עבודות</span>
-      <span class="np-body" aria-hidden="true">מבחר מן העבודות שיצאו מן השולחן בחודשים האחרונים; כל אחת מהן סיפור של עסק שביקש להיראות אחרת. מן המוקאפ הראשון ועד העלייה לאוויר — הכול נעשה ביד אחת.</span>
-    </button>
-
-    <!-- פתק: איך זה עובד -->
-    <button class="desk-item note note-process" data-modal="m-process" style="--r:-2deg" aria-haspopup="dialog">
-      <span class="pin" aria-hidden="true"></span>
-      <span class="note-title">איך זה עובד?</span>
-      <span class="np-byline" aria-hidden="true">מדריך למתחיל</span>
-      <span class="note-lines" aria-hidden="true">
-        <i>1. שיחה</i><i>2. אפיון</i><i>3. בנייה</i><i>4. אוויר</i>
-      </span>
-      <span class="np-body" aria-hidden="true">התהליך בנוי כך שהלקוח תמיד יידע היכן הדברים עומדים: שיחת היכרות קצרה, מסמך אפיון ברור, בנייה עם קישור לצפייה חיה, והשקה מסודרת אל האוויר. בלי הפתעות ובלי אותיות קטנות.</span>
-    </button>
-
-    <!-- מחירון מקופל: חבילות -->
-    <button class="desk-item paper folded" data-modal="m-packages" style="--r:2deg" aria-haspopup="dialog">
-      <span class="fold-crease" aria-hidden="true"></span>
-      <span class="item-label big">חבילות<small>מה אפשר לבנות ביחד</small></span>
-      <span class="np-byline" aria-hidden="true">מוסף כלכלה</span>
-      <span class="np-body" aria-hidden="true">שלושה מסלולים נפרשים לפני הלקוח — דף נחיתה, אתר עסקי ומערכת מלאה — כדי להתאים לכל שלב שבו העסק מצוי. המחיר הסופי נקבע לאחר שיחת אפיון בלבד, וכולל את הכול.</span>
-    </button>
-
-    <!-- פתק קטן: שאלות -->
-    <button class="desk-item note note-small" data-modal="m-faq" style="--r:5deg" aria-haspopup="dialog">
-      <span class="pin pin-ink" aria-hidden="true"></span>
-      <span class="note-title">שאלות ששואלים אותי</span>
-      <span class="np-body" aria-hidden="true">כמה זמן זה לוקח? למי שייך הדומיין? מה קורה לאחר ההשקה? התשובות לשאלות החוזרות, בעברית פשוטה, ממתינות בפנים.</span>
-    </button>
-
-    <!-- כרטיס ביקור: צור קשר -->
-    <button class="desk-item bizcard" data-modal="m-contact" style="--r:-3deg" aria-haspopup="dialog">
-      <span class="bizcard-name brand-name">הסטודיו של יקיר</span>
-      <span class="bizcard-line" aria-hidden="true"></span>
-      <span class="bizcard-role">בוא נדבר על הפרויקט שלך</span>
-      <span class="np-body" aria-hidden="true">הדרך הקצרה ביותר להתחיל היא שיחה. השאירו פרטים או שלחו הודעה — ותקבלו מענה עוד באותו היום, לרוב בתוך שעות.</span>
-      <svg class="bizcard-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 8.9 8.9 0 0 1-3.9-.9L3 20l1-4.9a8.3 8.3 0 0 1-1-4A8.4 8.4 0 0 1 12 3a8.4 8.4 0 0 1 9 8.5Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    </button>
-
-    <footer class="desk-foot">
-      <span>נבנה ביד. בלי תבניות. © <span id="year"></span></span>
-    </footer>
-  </div>
-
-  <!-- פס רץ — טיקר/ניקוד, פעיל רק בחלק מהערכות -->
-  <div class="theme-strip" id="themeStrip" aria-hidden="true">
-    <div class="strip-track"><span id="stripA"></span><span id="stripB"></span></div>
-  </div>
-
-  <!-- ═══ תחנת סגנונות — מחליפה את כל עיצוב האתר ═══ -->
-  <nav class="style-dock" aria-label="החלפת סגנון העיצוב">
-    <button class="dock-info" data-modal-open="m-styles" aria-label="מה זה מחליף הסגנונות?">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 9a2.5 2.5 0 1 1 3.4 2.3c-.8.3-1.4 1-1.4 1.9v.8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="11.5" cy="17.5" r="1.2" fill="currentColor"/></svg>
-    </button>
-    <button class="dock-current" id="dockCurrent" aria-haspopup="true" aria-expanded="false">
-      <span id="dockCurrentLabel">השולחן</span>
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 14l6-6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    </button>
-    <div class="dock-panel" id="dockPanel" role="group" aria-label="סגנונות">
-      <button class="theme-opt active" data-theme-set="desk"><i style="--d1:#f4efe4;--d2:#1c1a17;--d3:#c73e1d"></i>השולחן</button>
-      <button class="theme-opt" data-theme-set="swiss"><i style="--d1:#ffffff;--d2:#111111;--d3:#e0281c"></i>המגזין</button>
-      <button class="theme-opt" data-theme-set="tech"><i style="--d1:#0b0e14;--d2:#ffb454;--d3:#59c2ff"></i>העורך</button>
-      <button class="theme-opt" data-theme-set="soft"><i style="--d1:#faf6f1;--d2:#f0684a;--d3:#bfe3d0"></i>הסטארטאפ</button>
-      <button class="theme-opt" data-theme-set="galaxy"><i style="--d1:#05060f;--d2:#8b5cf6;--d3:#2dd4bf"></i>הגלקסיה</button>
-      <button class="theme-opt" data-theme-set="neon"><i style="--d1:#0c0614;--d2:#ff2ec4;--d3:#00e5ff"></i>הניאון</button>
-      <button class="theme-opt" data-theme-set="paper"><i style="--d1:#f2ead8;--d2:#191919;--d3:#b3261e"></i>העיתון</button>
-      <button class="theme-opt" data-theme-set="blueprint"><i style="--d1:#0d3159;--d2:#eaf3ff;--d3:#9fd0ff"></i>הבלופרינט</button>
-      <button class="theme-opt" data-theme-set="arcade"><i style="--d1:#050505;--d2:#ffe600;--d3:#00ff85"></i>הארקייד</button>
-      <button class="theme-opt" data-theme-set="lux"><i style="--d1:#0d0c0a;--d2:#d4af37;--d3:#f3e5b1"></i>היוקרה</button>
-    </div>
-  </nav>
-
-  <!-- ═══ מודלים — "מרימים דף מהשולחן" ═══ -->
-  <div class="overlay" id="overlay" hidden>
-    <div class="overlay-bg" data-close></div>
-
-    <article class="sheet" id="m-services" role="dialog" aria-modal="true" aria-labelledby="t-services" hidden>
-      <button class="sheet-close" data-close aria-label="סגור">
-        <svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-      </button>
-      <h2 id="t-services">מה אני בונה</h2>
-      <p class="sheet-intro">ארבעה דברים. כל אחד מהם — עד הסוף.</p>
-      <ul class="service-list">
-        <li>
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h13M13 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          <div><h3>דפי נחיתה</h3><p>עמוד אחד עם מטרה אחת — להפוך גולש לפנייה. מהיר, מדויק, מוכן לקמפיין.</p></div>
-        </li>
-        <li>
-          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M8 21h8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
-          <div><h3>אתרי תדמית</h3><p>הבית הדיגיטלי של העסק. מקום שנעים להפנות אליו לקוחות — והם מרגישים את זה.</p></div>
-        </li>
-        <li>
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 7h12l-1 13H7L6 7Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M9 7a3 3 0 0 1 6 0" fill="none" stroke="currentColor" stroke-width="1.7"/></svg>
-          <div><h3>חנויות אונליין</h3><p>מוצרים, סליקה ומשלוחים שמסתדרים לבד. אתה רק אורז חבילות.</p></div>
-        </li>
-        <li>
-          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="2.5" width="10" height="19" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="18" r="1" fill="currentColor"/></svg>
-          <div><h3>אפליקציות ווב</h3><p>מערכת תורים, אזור אישי, כלי פנימי — מה שהעסק שלך צריך ואין לו.</p></div>
-        </li>
-      </ul>
-      <a href="#" class="btn wa-link">ספר לי מה אתה צריך</a>
-    </article>
-
-    <article class="sheet" id="m-work" role="dialog" aria-modal="true" aria-labelledby="t-work" hidden>
-      <button class="sheet-close" data-close aria-label="סגור">
-        <svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-      </button>
-      <h2 id="t-work">עבודות נבחרות</h2>
-      <p class="sheet-intro">כמה דברים שיצאו מהשולחן הזה.</p>
-      <!-- PORTFOLIO: החלף תמונה (assets/), שם, שורה ותגית לכל פרויקט -->
-      <div class="work-list">
-        <a class="work-item" href="assets/work-fitness.jpg" target="_blank" rel="noopener">
-          <span class="work-thumb">
-            <img src="assets/work-fitness.jpg" alt="PULSE סטודיו — דף נחיתה לסטודיו אימונים" loading="lazy" width="200" height="120">
-          </span>
-          <span class="work-meta"><strong>PULSE סטודיו</strong><em>דף נחיתה · 40 נרשמים בשבוע הראשון</em></span>
-        </a>
-        <a class="work-item" href="assets/work-bakery.jpg" target="_blank" rel="noopener">
-          <span class="work-thumb">
-            <img src="assets/work-bakery.jpg" alt="מאפיית תמר — אתר תדמית עם הזמנות אונליין" loading="lazy" width="200" height="120">
-          </span>
-          <span class="work-meta"><strong>מאפיית תמר</strong><em>אתר תדמית · הזמנות אונליין גדלו פי 3</em></span>
-        </a>
-        <a class="work-item" href="assets/work-clinic.jpg" target="_blank" rel="noopener">
-          <span class="work-thumb">
-            <img src="assets/work-clinic.jpg" alt="תור — אפליקציית ניהול תורים לקליניקה" loading="lazy" width="200" height="120">
-          </span>
-          <span class="work-meta"><strong>תור — ניהול קליניקה</strong><em>אפליקציית ווב · חסכה 5 שעות טלפונים ביום</em></span>
-        </a>
-      </div>
-      <p class="sheet-note">רוצה לראות דוגמה מהתחום שלך? <a href="#" class="wa-link ink-link">שלח הודעה</a> ואשלח משהו רלוונטי.</p>
-    </article>
-
-    <article class="sheet" id="m-process" role="dialog" aria-modal="true" aria-labelledby="t-process" hidden>
-      <button class="sheet-close" data-close aria-label="סגור">
-        <svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-      </button>
-      <h2 id="t-process">איך זה עובד</h2>
-      <p class="sheet-intro">ארבעה צעדים. בלי הפתעות באמצע.</p>
-      <ol class="steps">
-        <li><strong>שיחה.</strong> רבע שעה בטלפון. אתה מספר על העסק, אני שואל את השאלות הנכונות.</li>
-        <li><strong>אפיון.</strong> מסמך קצר: מה בונים, כמה זמן, כמה עולה. מחיר סופי — נשאר סופי.</li>
-        <li><strong>בנייה.</strong> אתה מקבל קישור ורואה את האתר נבנה. מתקנים ומלטשים ביחד.</li>
-        <li><strong>אוויר.</strong> דומיין, גוגל, הכל מחובר. ואני נשאר זמין גם אחרי.</li>
-      </ol>
-    </article>
-
-    <article class="sheet" id="m-packages" role="dialog" aria-modal="true" aria-labelledby="t-packages" hidden>
-      <button class="sheet-close" data-close aria-label="סגור">
-        <svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-      </button>
-      <h2 id="t-packages">חבילות</h2>
-      <p class="sheet-intro">המחירים הם נקודת פתיחה — הצעה מדויקת תקבל אחרי שיחת אפיון קצרה (חינם), כי לכל עסק צרכים אחרים. זה מה שכל מסלול כולל:</p>
-      <div class="package-rows">
-        <div class="package-row">
-          <div><h3>דף נחיתה</h3><span class="pkg-price">החל מ-<b>₪2,500</b></span><p>עיצוב אישי · טופס לידים וחיבור וואטסאפ · מותאם מובייל · באוויר תוך שבוע</p></div>
-        </div>
-        <div class="package-row highlight">
-          <span class="row-flag">המבוקש</span>
-          <div><h3>אתר עסקי</h3><span class="pkg-price">החל מ-<b>₪6,000</b></span><p>עד חמישה עמודים · גלריה ותיק עבודות · תשתית קידום בגוגל · הדרכה לעדכון עצמאי · 2–3 שבועות</p></div>
-        </div>
-        <div class="package-row">
-          <div><h3>אפליקציה או מערכת</h3><span class="pkg-price">החל מ-<b>₪12,000</b></span><p>אפיון מעמיק · תורים, הזמנות או אזור אישי · אוטומציות · ליווי צמוד אחרי ההשקה</p></div>
-        </div>
-      </div>
-      <a href="#" class="btn wa-link">בוא נתאים חבילה לעסק שלך</a>
-    </article>
-
-    <article class="sheet" id="m-faq" role="dialog" aria-modal="true" aria-labelledby="t-faq" hidden>
-      <button class="sheet-close" data-close aria-label="סגור">
-        <svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-      </button>
-      <h2 id="t-faq">שאלות ששואלים אותי</h2>
-      <div class="faq">
-        <details><summary>כמה זמן זה לוקח?</summary><p>דף נחיתה — שבוע. אתר תדמית — שבועיים־שלושה. מערכת — נקבע באפיון, ואני עומד בתאריכים.</p></details>
-        <details><summary>כמה זה עולה?</summary><p>תלוי מה בונים. אחרי שיחת אפיון קצרה (חינם) תקבל מחיר סופי אחד — והוא לא זז.</p></details>
-        <details><summary>האתר והדומיין שלי?</summary><p>לגמרי. הדומיין על שמך, הקוד והתכנים שלך. אין תלות בי ואין בן ערובה.</p></details>
-        <details><summary>אני לא טכנולוגי. בעיה?</summary><p>להפך. אתה מדבר איתי על העסק בעברית פשוטה — התרגום לטכנולוגיה הוא העבודה שלי.</p></details>
-        <details><summary>ומה אחרי ההשקה?</summary><p>הדרכה קצרה לעדכן לבד, ואני נשאר זמין לתיקונים ושדרוגים. לא נעלם.</p></details>
-      </div>
-    </article>
-
-    <article class="sheet" id="m-styles" role="dialog" aria-modal="true" aria-labelledby="t-styles" hidden>
-      <button class="sheet-close" data-close aria-label="סגור">
-        <svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-      </button>
-      <h2 id="t-styles">אתר אחד. עשר שפות עיצוב.</h2>
-      <p class="sheet-intro">האתר שאתה מסתכל עליו הוא תיק העבודות של עצמו. הכפתורים שלמטה לא מחליפים צבע — הם מחליפים <strong>הכל</strong>: פריסה, טיפוגרפיה, תנועה ואופי. אותו תוכן בדיוק, עשר שפות שונות:</p>
-      <ul class="styles-list">
-        <li><strong>השולחן</strong><span>אישי ואנלוגי — ניירות, פתקים ודיו. לעסקים עם נשמה.</span></li>
-        <li><strong>המגזין</strong><span>שוויצרי, חד ומסודר — שחור, לבן ואדום. לעסקים שרוצים סמכות.</span></li>
-        <li><strong>העורך</strong><span>כהה ומוקפד, כמו עורך קוד — לסטארטאפים ומוצרי טק.</span></li>
-        <li><strong>הסטארטאפ</strong><span>רך, עגול וידידותי — לשירותים שרוצים להיות נגישים.</span></li>
-        <li><strong>הגלקסיה</strong><span>חלל, זכוכית ואור — תלת־ממד, פרלקסה וכוכבים נופלים. למותגים שרוצים להוריד לסתות.</span></li>
-        <li><strong>הניאון</strong><span>סייברפאנק — שלטי ניאון מהבהבים וגליץ'. למותגי לילה ואופנה נועזת.</span></li>
-        <li><strong>העיתון</strong><span>עיתון וינטג' — טורים, כותרות דיו וטיקר חדשות. לעסקים עם סיפור.</span></li>
-        <li><strong>הבלופרינט</strong><span>שרטוט הנדסי — קווים לבנים על כחול, מידות והערות. לאדריכלים ואנשי מקצוע.</span></li>
-        <li><strong>הארקייד</strong><span>משחק 8-ביט — ניקוד, הבהובים ו-PRESS START. למי שרוצה כיף.</span></li>
-        <li><strong>היוקרה</strong><span>זהב על שחור — ברק עדין וטיפוגרפיה חגיגית. למותגי פרימיום.</span></li>
-      </ul>
-      <p class="styles-point">זו הנקודה: העסק שלך לא צריך להתאים את עצמו לתבנית. אני מקשיב, מבין את האופי — ובונה לו שפה משלו. עיצוב, קוד, אנימציה ומילים — הכל כאן נעשה ביד אחת.</p>
-      <a href="#" class="btn wa-link">איזה סגנון מתאים לעסק שלך? בוא נגלה</a>
-    </article>
-
-    <article class="sheet" id="m-contact" role="dialog" aria-modal="true" aria-labelledby="t-contact" hidden>
-      <button class="sheet-close" data-close aria-label="סגור">
-        <svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-      </button>
-      <h2 id="t-contact">בוא נדבר</h2>
-      <p class="sheet-intro">הדרך הקצרה — וואטסאפ. עונה בדרך כלל תוך שעות.</p>
-      <a href="#" class="btn wa-link">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 8.9 8.9 0 0 1-3.9-.9L3 20l1-4.9a8.3 8.3 0 0 1-1-4A8.4 8.4 0 0 1 12 3a8.4 8.4 0 0 1 9 8.5Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        לכתוב לי בוואטסאפ
-      </a>
-      <div class="or-line"><span>או שאחזור אליך</span></div>
-      <form id="contactForm" novalidate>
-        <div class="field-row">
-          <label class="field"><span>שם</span><input type="text" name="name" autocomplete="name"></label>
-          <label class="field"><span>טלפון</span><input type="tel" name="phone" autocomplete="tel"></label>
-        </div>
-        <label class="field"><span>על מה נדבר? <small>(לא חובה)</small></span><input type="text" name="message" placeholder="יש לי עסק ל—, מתלבט בין אתר לדף נחיתה"></label>
-        <button type="submit" class="btn btn-ink">שיחזרו אליי</button>
-        <p class="form-note" id="formNote" role="status"></p>
-      </form>
-    </article>
-  </div>
-
-  <script src="js/main.js"></script>
+  <div id="root"></div>
+  <script type="module" src="/src/main.jsx"></script>
 </body>
 </html>

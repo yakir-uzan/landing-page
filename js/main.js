@@ -83,26 +83,19 @@ document.querySelectorAll('.desk-item').forEach(item => {
     if (e.animationName === 'settle') item.classList.add('settled');
   });
 
-  if (!isDesktop) {
-    // במובייל — קליק רגיל בלבד
-    item.addEventListener('click', () => openModal(modalId, item));
-    return;
-  }
-
-  // בדסקטופ — pointer events: הזזה חופשית, וקליק (בלי גרירה) פותח את הדף
+  // גרירה חופשית בכל מסך — עכבר או מגע. קליק/הקשה בלי גרירה פותח את הדף
   let startX, startY, baseX, baseY, dragging, moved;
 
   item.addEventListener('pointerdown', e => {
     if (e.button !== 0) return;
+    moved = false;                       // איפוס בכל לחיצה — גם בערכות בלי גרירה
     if (document.documentElement.dataset.theme !== 'desk') return; // גרירה רק על השולחן
     dragging = true;
-    moved = false;
     startX = e.clientX;
     startY = e.clientY;
     baseX = +(item.dataset.x || 0);
     baseY = +(item.dataset.y || 0);
-    item.setPointerCapture(e.pointerId);
-    item.style.zIndex = ++topZ;
+    // לא לוכדים כאן — לכידת מצביע מוקדמת מבטלת את אירוע ה-click של הקשה פשוטה
   });
 
   item.addEventListener('pointermove', e => {
@@ -111,6 +104,8 @@ document.querySelectorAll('.desk-item').forEach(item => {
     const dy = e.clientY - startY;
     if (!moved && Math.hypot(dx, dy) > 6) {
       moved = true;
+      try { item.setPointerCapture(e.pointerId); } catch {}  // לכידה רק כשגרירה מתחילה בפועל
+      item.style.zIndex = ++topZ;
       item.classList.add('settled'); // שלא תרוץ שוב אנימציית הנחיתה אחרי שחרור
       item.classList.add('dragging');
       // המבקר הבין את הרעיון — התגית "משתחררת" ונופלת
@@ -126,9 +121,9 @@ document.querySelectorAll('.desk-item').forEach(item => {
   item.addEventListener('pointerup', e => {
     if (!dragging) return;
     dragging = false;
-    item.releasePointerCapture(e.pointerId);
+    try { item.releasePointerCapture(e.pointerId); } catch {}
     item.classList.remove('dragging');
-    if (!moved) openModal(modalId, item);
+    // הפתיחה מטופלת באירוע click כשלא הייתה גרירה — אמין יותר במגע
   });
 
   item.addEventListener('pointercancel', () => {
@@ -145,9 +140,9 @@ document.querySelectorAll('.desk-item').forEach(item => {
     }
   });
 
-  // בערכות האחרות אין גרירה — קליק רגיל פותח
+  // הקשה בלי גרירה פותחת את הדף — בכל הערכות ובכל מסך
   item.addEventListener('click', () => {
-    if (document.documentElement.dataset.theme !== 'desk') openModal(modalId, item);
+    if (!moved) openModal(modalId, item);
   });
 });
 

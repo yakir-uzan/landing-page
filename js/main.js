@@ -7,10 +7,41 @@ const CONFIG = {
   brandName: 'הסטודיו של יקיר',      // שם המותג — מוחלף בכל מקום בדף
   whatsapp: '972538227642',          // מספר וואטסאפ בינלאומי בלי + (למשל 972501234567)
   formspreeEndpoint: '',             // כתובת Formspree. ריק = הטופס נשלח דרך וואטסאפ
+  // אנליטיקס — מלא אחד מהם כדי להפעיל מעקב (ריק = כבוי לגמרי, בלי מעקב ובלי עוגיות)
+  plausibleDomain: '',               // הדומיין ב-Plausible, למשל 'yakir-studio.co.il' (פרטי, בלי באנר עוגיות)
+  gaId: '',                          // מזהה Google Analytics 4, למשל 'G-XXXXXXXXXX' (חינם)
 };
 
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const isDesktop = window.matchMedia('(min-width: 901px) and (pointer: fine)').matches;
+
+/* ═══ אנליטיקס — נטען רק אם הוגדר מזהה ב-CONFIG ═══ */
+(function initAnalytics() {
+  if (CONFIG.plausibleDomain) {
+    const s = document.createElement('script');
+    s.defer = true;
+    s.dataset.domain = CONFIG.plausibleDomain;
+    s.src = 'https://plausible.io/js/script.js';
+    document.head.appendChild(s);
+    window.plausible = window.plausible || function () { (window.plausible.q = window.plausible.q || []).push(arguments); };
+  }
+  if (CONFIG.gaId) {
+    const g = document.createElement('script');
+    g.async = true;
+    g.src = 'https://www.googletagmanager.com/gtag/js?id=' + CONFIG.gaId;
+    document.head.appendChild(g);
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function () { window.dataLayer.push(arguments); };
+    gtag('js', new Date());
+    gtag('config', CONFIG.gaId);
+  }
+})();
+
+// שולח אירוע המרה לכל ספק מעקב שפעיל (וואטסאפ / טופס)
+function trackEvent(name) {
+  try { if (window.plausible) window.plausible(name); } catch {}
+  try { if (window.gtag) window.gtag('event', name); } catch {}
+}
 
 /* ═══ מותג + שנה + וואטסאפ ═══ */
 document.querySelectorAll('.brand-name').forEach(el => (el.textContent = CONFIG.brandName));
@@ -36,6 +67,7 @@ document.querySelectorAll('.wa-link').forEach(a => {
   a.href = waUrl('היי, הגעתי מהאתר שלך ואשמח לדבר על פרויקט.');
   a.target = '_blank';
   a.rel = 'noopener';
+  a.addEventListener('click', () => trackEvent('whatsapp_click'));
 });
 
 /* ═══ מודלים — פתיחה, סגירה, פוקוס ═══ */
@@ -468,6 +500,7 @@ document.getElementById('contactForm').addEventListener('submit', async e => {
       if (!res.ok) throw new Error();
       note.textContent = 'התקבל. אחזור אליך עוד היום.';
       note.className = 'form-note ok';
+      trackEvent('lead_form');
       form.reset();
     } catch {
       note.textContent = 'משהו נתקע — נסה שוב, או פשוט שלח וואטסאפ.';
@@ -477,5 +510,6 @@ document.getElementById('contactForm').addEventListener('submit', async e => {
     window.open(waUrl(msg), '_blank', 'noopener');
     note.textContent = 'נפתח וואטסאפ עם הפרטים — נשאר רק לשלוח.';
     note.className = 'form-note ok';
+    trackEvent('lead_form');
   }
 });

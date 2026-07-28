@@ -8,15 +8,15 @@
 
 > Landing page for UY Studio - a web-development studio building websites for businesses.
 
-## ✨ Features
+## Features
 - Fast, lightweight static landing page
 - Responsive design for mobile and desktop
 - Clean, modern UI
 
-## 🧱 Tech Stack
+## Tech Stack
 HTML5 · CSS3 · Vanilla JavaScript
 
-## 📁 Structure
+## Structure
 | Path | Description |
 |------|-------------|
 | `index.html` | Main page |
@@ -24,7 +24,7 @@ HTML5 · CSS3 · Vanilla JavaScript
 | `js/` | Scripts |
 | `assets/` | Images & media |
 
-## 🚀 Getting Started
+## Getting Started
 ```bash
 # Just open index.html, or serve locally:
 npx serve .
@@ -37,15 +37,15 @@ npx serve .
 
 > דף נחיתה ל-UY Studio - סטודיו לבניית אתרים לעסקים.
 
-### ✨ יכולות
+### יכולות
 - דף נחיתה סטטי מהיר וקליל
 - עיצוב רספונסיבי למובייל ולדסקטופ
 - ממשק נקי ומודרני
 
-### 🧱 מחסנית טכנולוגית
+### מחסנית טכנולוגית
 HTML5 · CSS3 · JavaScript
 
-### 🚀 התקנה והרצה
+### התקנה והרצה
 ```bash
 npx serve .   # או פשוט לפתוח את index.html
 ```
